@@ -1,0 +1,143 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Forum';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/forum-v16-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/inter-v12-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap; 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/inter-v12-latin-700.woff2') format('woff2'); 
+}
+
+.page {
+    height: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type='checkbox'].visually-hidden,
+input[type='radio'].visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect (0 0 0 0);
+    overflow: hidden;
+}
+
+.page-body {
+    width: 1440px;
+    margin: 0 auto;
+    padding:  0;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: 400;
+    color: #000000;
+    background-color: #ffffff;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    align-content: start;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header {
+    color: #ffffff;
+    background-color: #0C0C0E;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.header h1 {
+    font-family: 'Forum';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.nav a {
+    color: #ffffff;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-list a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease-out;
+}
+
+.nav-list a:hover::after,
+.nav-list a:focus::after {
+    width: 100%;
+}
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item:not(:first-child) {
+    margin-left: 30px;
+}
+
+.header-profile {
+    width: 28px;
+    height: 28px;
+    margin-left: 40px;
+    opacity: 1;
+}
+
+.header-profile:hover svg {
+    opacity: 0.5;
+    transition: 0.3s;
+}
