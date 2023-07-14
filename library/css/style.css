@@ -87,7 +87,7 @@ img {
 }
 
 .header h1 {
-    font-family: 'Forum';
+    font-family: 'Forum',sans-serif;
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -140,4 +140,167 @@ img {
 .header-profile:hover svg {
     opacity: 0.5;
     transition: 0.3s;
+}
+
+.welcome {
+    min-height: 600px;
+    color: #ffffff;
+    background-color: #000000;
+    background-image: url('../assets/img/welcome-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+.welcome h3 {
+    text-align: center;
+    font-family: 'Forum', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #000000;
+    margin-top: 216px;
+    padding: 39px 118px;
+}
+
+.section-header {
+    color: #0C0C0E;
+    text-align: center;
+    font-family: 'Forum', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    position: relative;
+    margin: 0;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: #0C0C0E;
+    width: 50px;
+    height: 1px;
+    bottom: -21px;
+    right: calc(50% - 25px);
+}
+
+.about,
+.favorites {
+    padding: 20px 20px 40px 20px;
+}
+
+.about p {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.slider {
+    position: relative;
+    margin-bottom: 44px;
+}
+
+.slider-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+}
+
+.slider-controls {
+    position: absolute;
+    width: 78px;
+    right: calc(50% - 39px);
+    bottom: -47px;
+    font-size: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.slider-controls label {
+    position: relative;
+    width: 26px;
+    height: 26px;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.slider-controls label::after {
+    content: '';
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background-color: #0C0C0E;
+    border-radius: 50%;
+    top: -33px;
+    right: -5px;
+}
+
+.slider-controls label.active-slide::after {
+    background-color: #BB945F;
+}
+
+.fav-filter h3 {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 61px;
+    margin-bottom: 32px;
+}
+
+.fav-filter label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 37px;
+    display: inline-block;
+    width: 120px;
+    margin: 0;
+}
+
+.fav-filter label:not(:first-of-type) {
+    margin-left: 66px;
+}
+
+.fav-filter label:last-of-type {
+    margin-left: 80px;
+}
+
+
+.fav-input-radio+label::before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background-image: url(../assets/img/fav-radio-off.svg);
+    background-repeat: no-repeat;
+    background-position: 4px 4px;
+    top: 9px;
+    left: -3px;
+}
+
+.fav-input-radio:checked+label {
+    font-weight: 700;
+}
+
+.fav-input-radio:checked+label::before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background-image: url(../assets/img/fav-radio-on.svg);
+    background-repeat: no-repeat;
+    background-position: 4px 4px;
+    top: 9px;
+    left: -3px;
 }
