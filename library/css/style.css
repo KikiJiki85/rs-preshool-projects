@@ -704,7 +704,6 @@ span.book-author {
     margin-left: 115px;
 }
 
-
 .footer-bottom::before {
     content: '';
     width: 1400px;
@@ -713,4 +712,3 @@ span.book-author {
     position: absolute;
     top: -2px;
 }
-
