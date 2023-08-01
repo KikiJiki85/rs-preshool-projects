@@ -411,17 +411,18 @@ span.book-author {
     line-height: normal;
     letter-spacing: 1px;
     cursor: pointer;
+    transition: all 0.9s;
 }
 
 .btn:not(:disabled):hover {
     background-color: #BB945F;
     border: none;
-    transition: 0.3s;
 }
 
 .book-own {
     color: #BB945F;
     border-color: #BB945F;
+    cursor: auto;
 }
 
 .coffee-shop {
