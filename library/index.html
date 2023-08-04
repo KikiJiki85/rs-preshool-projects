@@ -37,6 +37,9 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z" fill="white"/>
                 </svg>
             </a>
+            <div class="header-burger-wrapper">
+                <span class="header-burger"></span>
+            </div>
         </div>
     </header>
     <main class="main">
@@ -51,10 +54,16 @@
                 <input class="visually-hidden" type="radio" id="image-pack-1" name="toggle" checked>
                 <input class="visually-hidden" type="radio" id="image-pack-2" name="toggle">
                 <input class="visually-hidden" type="radio" id="image-pack-3" name="toggle">
+                <input class="visually-hidden" type="radio" id="image-pack-4" name="toggle">
+                <input class="visually-hidden" type="radio" id="image-pack-5" name="toggle">
                 <div class="slider-controls">
+                    <span class="slider-control-tablet1"></span>
+                    <span class="slider-control-tablet2"></span>
                     <label class="slider-control1 active-slide" for="image-pack-1" aria-label="First pack slides">1</label>
                     <label class="slider-control2" for="image-pack-2" aria-label="Second pack slides">2</label>
                     <label class="slider-control3" for="image-pack-3" aria-label="Third pack slides">3</label>
+                    <label class="slider-control4 slider-tablet" for="image-pack-4" aria-label="Fourth pack slides">4</label>
+                    <label class="slider-control5 slider-tablet" for="image-pack-5" aria-label="Fifth pack slides">5</label>
                 </div>
                 <ul class="slider-list">
                     <li class="slider-item"><img src="assets/img/about-image1.jpg" width="450" height="560" alt="Library photo 1"></li>
@@ -69,14 +78,16 @@
             <h2 class="section-header">Favorites</h2>
             <section class="fav-filter">
                 <h3 class="fav-filter-header">Pick favorites of season</h3>
-                <input class="visually-hidden fav-input-radio" type="radio" id="winter" name="toggle" checked>
-                <label for="winter" aria-label="Winter season books">Winter</label>
-                <input class="visually-hidden fav-input-radio" type="radio" id="spring" name="toggle">
-                <label for="spring" aria-label="Spring season books">Spring</label>
-                <input class="visually-hidden fav-input-radio" type="radio" id="summer" name="toggle">
-                <label for="summer" aria-label="Summer season books">Summer</label>
-                <input class="visually-hidden fav-input-radio" type="radio" id="autumn" name="toggle">
-                <label for="autumn" aria-label="Autumn season books">Autumn</label>
+                <div class="fav-filter-wrapper">
+                    <input class="visually-hidden fav-input-radio" type="radio" id="winter" name="toggle" checked>
+                    <label for="winter" aria-label="Winter season books">Winter</label>
+                    <input class="visually-hidden fav-input-radio" type="radio" id="spring" name="toggle">
+                    <label for="spring" aria-label="Spring season books">Spring</label>
+                    <input class="visually-hidden fav-input-radio" type="radio" id="summer" name="toggle">
+                    <label for="summer" aria-label="Summer season books">Summer</label>
+                    <input class="visually-hidden fav-input-radio" type="radio" id="autumn" name="toggle">
+                    <label for="autumn" aria-label="Autumn season books">Autumn</label>
+                </div>
                 <ul class="fav-filter-list">
                     <li>
                         <ul class="fav-filter-pack winter-pack">
