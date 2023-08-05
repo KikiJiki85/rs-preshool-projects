@@ -907,13 +907,12 @@ span.book-author {
         height: 570px;
         background-color: #000000;
         top: -20px;
-        right: -20px;
+        right: -350px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 40px;
         transition: all 0.8s;
-        transform: translateX(100%);
         visibility: hidden;
         opacity: 0;
     }
@@ -923,7 +922,7 @@ span.book-author {
     }
     
     .header.menu-toggle .nav-list {
-        transform: translateX(0);
+        transform: translateX(-100%);
         visibility: visible;
         opacity: 1;
     }
