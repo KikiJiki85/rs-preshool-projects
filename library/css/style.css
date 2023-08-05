@@ -725,16 +725,13 @@ span.book-author {
 }
 
 @media (max-width: 1024px) {
-    .nav {
-        display: none;
-    }
-
     .header-wrapper {
         gap: 40px;
     }
 
     .header-profile {
         margin-left: 0;
+        z-index: 1;
     }
 
     .header-burger-wrapper {
@@ -899,7 +896,27 @@ span.book-author {
     .footer-rs {
         margin-left: 56px;
     }
-    
+
+    .header-wrapper {
+        position: relative;
+    }
+
+    .nav-list {
+        position: absolute;
+        width: 330px;
+        height: 570px;
+        background-color: #000000;
+        top: -20px;
+        right: -20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .nav-list .nav-item {
+        margin-left: 0;
+    }
 }
 
 @media (max-width: 768px) {
