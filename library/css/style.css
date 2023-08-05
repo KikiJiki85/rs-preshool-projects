@@ -75,6 +75,12 @@ input[type='radio'].visually-hidden {
     align-content: start;
 }
 
+.body-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
 a {
     text-decoration: none;
 }
@@ -159,7 +165,7 @@ img {
     transition: 0.3s;
 }
 
-.header-burger-wrapper {
+.header-burger {
     display: none;
 }
 
@@ -692,7 +698,7 @@ span.book-author {
     margin-top: 0;
     margin-bottom: 10px;
 }
-
+  
 .footer-bottom {
     grid-column: 1 / span 2;
     display: flex;
@@ -734,49 +740,43 @@ span.book-author {
         z-index: 1;
     }
 
-    .header-burger-wrapper {
+    .header-burger {
         width: 45px;
-        height: 30px;
-        display: inline-block;
+        height: 45px;
         position: relative;
         cursor: pointer;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .header-burger {
-        position: relative;
-        top: -13px;
-    }
-
-    .header-burger,
-    .header-burger::before,
-    .header-burger::after {
-        display: inline-block;
-        width: 45px;
-        height: 1px;
-        background-color: #ffffff;
-
-    }
-
-    .header-burger::before,
-    .header-burger::after {
-        content: '';
+    .header-burger span {
         position: absolute;
-        left: 0;
-        transition: all 0.2s;
-    }
-    
-    .header-burger::before {
-        top: -10px;
-    }
-    .header-burger::after {
-        top: 10px;
+        width: 45px;
+        height: 2px;
+        background-color: #ffffff;
+        transition: all 0.3s;
     }
 
-    .header-burger-wrapper:hover .header-burger::before {
-        top: -13px;
+    .header-burger span:nth-child(2) {
+        transform: translateY(-10px);
     }
-    .header-burger-wrapper:hover .header-burger::after {
-        top: 13px;
+
+    .header-burger span:nth-child(3) {
+        transform: translateY(10px);
+    }
+
+    .header.menu-toggle .header-burger span:nth-child(1) {
+        transform: rotate(45deg);
+    }
+
+    .header.menu-toggle .header-burger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .header.menu-toggle .header-burger span:nth-child(3) {
+        transform: translateY(0) rotate(135deg);
     }
 
     .welcome {
@@ -912,10 +912,20 @@ span.book-author {
         align-items: center;
         justify-content: center;
         gap: 40px;
+        transition: all 0.8s;
+        transform: translateX(100%);
+        visibility: hidden;
+        opacity: 0;
     }
 
     .nav-list .nav-item {
         margin-left: 0;
+    }
+    
+    .header.menu-toggle .nav-list {
+        transform: translateX(0);
+        visibility: visible;
+        opacity: 1;
     }
 }
 

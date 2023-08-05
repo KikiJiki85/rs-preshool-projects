@@ -1,3 +1,16 @@
+const menuToggle = document.querySelector(".header-burger");
+const menuPopup = document.querySelector(".header");
+
+menuToggle.addEventListener("click", function() {
+   if (menuPopup.classList.contains("menu-toggle")) {
+    menuPopup.classList.remove("menu-toggle");
+   } else {
+    menuPopup.classList.add("menu-toggle");
+   }
+
+});
+
+
 console.log(`
 1. Вёрстка соответствует макету. Ширина экрана 768px +26\n
 2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12\n
