@@ -289,7 +289,7 @@ img {
 
 .fav-filter-wrapper {
     display: flex;
-    gap: 66px;
+    gap: 72px;
 }
 
 .fav-filter label {
@@ -301,13 +301,9 @@ img {
     margin: 0;
 }
 
-/* .fav-filter label:not(:first-of-type) {
-    margin-left: 66px;
-}
-
 .fav-filter label:last-of-type {
-    margin-left: 80px;
-} */
+    margin-left: 10px;
+} 
 
 
 .fav-input-radio+label::before {
@@ -547,6 +543,7 @@ span.book-author {
 .contacts-map img {
     width: 696px;
     height: 414px;
+    object-fit: contain;
 }
 
 .library-card {
@@ -843,11 +840,73 @@ span.book-author {
         padding-left: 69px;
         padding-right: 109px;
     }
+
+    .shop-menu-wrapper {
+        flex-direction: column;
+    }
+    
+    .drinks-menu {
+        align-self: flex-start;
+        padding-left: 2px;
+    }
+
+    .meal-menu {
+        align-self: flex-end;
+        padding-right: 2px;
+    }
+
+    .meal-menu h3 {
+        margin-top: 0;
+    }
+
+    .coffee-shop {
+        padding: 20px 18px;
+    }
+
+    .contacts-wrapper {
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .contacts-map {
+        align-self: center;
+    }
+
+    .library-card {
+        padding-bottom: 38px;
+    }
+
+    .library-card-wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 64px;
+        gap: 0;
+    }
+
+    .library-card-get {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .library-card-get h3 {
+        margin-top: 20px;
+    }
+
+    .library-card-get p {
+        margin-top: 40px;
+        margin-bottom: 32px;
+    }
+
+    .footer-rs {
+        margin-left: 56px;
+    }
+    
 }
 
 @media (max-width: 768px) {
 }
 
 @media (max-width: 640px) {
-
+    .fav-filter-wrapper {
+        gap: 20px;
+    }
 }
