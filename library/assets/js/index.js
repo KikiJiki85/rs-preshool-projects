@@ -30,8 +30,50 @@ document.body.addEventListener('click', (evt) => {
    menuPopup.classList.remove("menu-toggle");
 });
 
-console.log(`
-1. Вёрстка соответствует макету. Ширина экрана 768px +26\n
-2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12\n
-3. На ширине экрана 768рх реализовано адаптивное меню +12\n
-Итого: 50 баллов`);
+console.log(``);
+
+
+let position = 0;
+const slidesToShow = 3;
+const slidesToScroll = 1;
+
+const slider = document.querySelector('.slider');
+
+const container = slider.querySelector('.slider-wrapper');
+const track = slider.querySelector('.slider-list');
+const items = slider.querySelectorAll('.slider-item');
+const sliderControls = slider.querySelectorAll('.slider-control');
+
+const itemsCount = items.length;
+const itemWidth = container.clientWidth / slidesToShow;
+const movePosition = slidesToScroll * itemWidth;
+
+items.forEach((item) => {
+   item.style.minWidth = `${itemWidth}px`;
+})
+
+sliderControls[1].addEventListener('click', () => {
+   const itemsLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
+
+   position -= itemsLeft >= slidesToScroll ?  movePosition : itemsLeft * itemWidth;
+
+   setPosition();
+});
+
+sliderControls[0].addEventListener('click', () => {
+   const itemsLeft = Math.abs(position) / itemWidth;
+
+   position += itemsLeft >= slidesToScroll ?  movePosition : itemsLeft * itemWidth;
+
+   setPosition();
+});
+
+const setPosition = () => {
+   track.style.transform = `translateX(${position}px)`;
+};
+
+const checkBtns = () => {
+};
+
+
+
