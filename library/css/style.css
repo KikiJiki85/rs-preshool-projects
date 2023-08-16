@@ -229,7 +229,7 @@ img {
 
 .slider {
     position: relative;
-    margin-bottom: 44px;
+    margin-bottom: 59px;
 }
 
 .slider-wrapper {
@@ -239,25 +239,24 @@ img {
 
 .slider-list {
     position: relative;
-    list-style: none;
     padding: 0;
     display: flex;
-    gap: 8px;
-    transition: transform 2s ease-out;
+    transition: transform 1s ease-out;
 }
 
 .slider-item {
     display: flex;
+    max-height: 560px;
+    object-fit: contain;
 }
 
 .slider-controls {
     position: absolute;
     width: 78px;
     right: calc(50% - 39px);
-    bottom: -47px;
+    bottom: -62px;
     font-size: 0;
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
 }
 
@@ -269,9 +268,11 @@ img {
     cursor: pointer;
     z-index: 3;
     border: none;
+    
 }
 
 .slider-control::after {
+    transition: all 0.3s;
     content: '';
     display: block;
     position: relative;
@@ -796,12 +797,11 @@ span.book-author {
     }
 
     .slider-list {
-        grid-template-columns: 1fr;
         justify-items: center;
     }
-
-    .slider-item:not(:first-of-type) {
-        display: none;
+    .slider-wrapper {
+        margin: 0 auto;
+        max-width: 460px;
     }
 
     .slider-controls {
