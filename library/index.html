@@ -55,8 +55,8 @@
                 <section class="slider">
                     <h3 class="visually-hidden">Library pictures slider</h3>
                     <div class="slider-controls">
-                        <span class="slider-control-tablet1"></span>
-                        <span class="slider-control-tablet2"></span>
+                        <button class="slider-control-tablet1" disabled></button>
+                        <button class="slider-control-tablet2"></button>
                         <button class="slider-control active-slide"></button>
                         <button class="slider-control"></button>
                         <button class="slider-control"></button>
@@ -80,17 +80,17 @@
                     <h3 class="fav-filter-header">Pick favorites of season</h3>
                     <div class="fav-filter-wrapper">
                         <input class="visually-hidden fav-input-radio" type="radio" id="winter" name="toggle" checked>
-                        <label for="winter" aria-label="Winter season books">Winter</label>
+                        <label class="fav-filter-control" for="winter" aria-label="Winter season books">Winter</label>
                         <input class="visually-hidden fav-input-radio" type="radio" id="spring" name="toggle">
-                        <label for="spring" aria-label="Spring season books">Spring</label>
+                        <label class="fav-filter-control" for="spring" aria-label="Spring season books">Spring</label>
                         <input class="visually-hidden fav-input-radio" type="radio" id="summer" name="toggle">
-                        <label for="summer" aria-label="Summer season books">Summer</label>
+                        <label class="fav-filter-control" for="summer" aria-label="Summer season books">Summer</label>
                         <input class="visually-hidden fav-input-radio" type="radio" id="autumn" name="toggle">
-                        <label for="autumn" aria-label="Autumn season books">Autumn</label>
+                        <label class="fav-filter-control" for="autumn" aria-label="Autumn season books">Autumn</label>
                     </div>
                     <ul class="fav-filter-list">
-                        <li>
-                            <ul class="fav-filter-pack winter-pack">
+                        <li class="fav-slide winter-pack fav-active-slide">
+                            <ul class="fav-filter-pack">
                                 <li class="fav-filter-item">
                                     <p class="book-highlight">Staff picks</p>
                                     <h3>The Book Eaters<br><span class="book-author">by Sunyi Dean</span></h3>
@@ -120,13 +120,13 @@
                                     <h3>The Last Queen<br><span class="book-author">by Clive Irving</span></h3>
                                     <p class="filter-item-text">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
                                     <img src="assets/img/winter-book4.jpg" alt="The Last Queen by Clive Irving book" width="400" height="600">
-                                    <button class="btn book-buy visually-hidden">Buy</button>
-                                    <button class="btn book-own" disabled>Own</button>
+                                    <button class="btn book-buy">Buy</button>
+                                    <button class="btn book-own visually-hidden" disabled>Own</button>
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <ul class="fav-filter-pack spring-pack visually-hidden">
+                        <li class="fav-slide spring-pack">
+                            <ul class="fav-filter-pack">
                                 <li class="fav-filter-item">
                                     <p class="book-highlight">Staff picks</p>
                                     <h3>The Body<br><span class="book-author">by Stephen King</span></h3>
@@ -161,8 +161,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <ul class="fav-filter-pack summer-pack visually-hidden">
+                        <li class="fav-slide summer-pack">
+                            <ul class="fav-filter-pack">
                                 <li class="fav-filter-item">
                                     <p class="book-highlight">Staff picks</p>
                                     <h3>Crude: A Memoir<br><span class="book-author">by Pablo Fajardo & Sophie Tardy-Joubert</span></h3>
@@ -197,8 +197,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <ul class="fav-filter-pack autumn-pack visually-hidden">
+                        <li class="fav-slide autumn-pack">
+                            <ul class="fav-filter-pack">
                                 <li class="fav-filter-item">
                                     <p class="book-highlight">Staff picks</p>
                                     <h3>Casual Conversation<br><span class="book-author">by Renia White</span></h3>
@@ -388,5 +388,7 @@
         </footer>
     </div>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/slider.js"></script>
 </body>
 </html>
