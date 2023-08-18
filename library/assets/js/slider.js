@@ -1,10 +1,28 @@
+const fav = document.querySelector('.favorites');
 const favFilter = document.querySelector('.fav-filter');
+const favFilterEnd = document.querySelector('.coffee-shop');
 const favControls = favFilter.querySelectorAll('.fav-filter-control');
 const favTrack = favFilter.querySelector('.fav-filter-list');
 const favSlides = favFilter.querySelectorAll('.fav-slide');
+const favControlMenu = favFilter.querySelector('.fav-controls-wrapper');
 
 let favSlideWidth = favTrack.clientWidth;
 let favPosition = 0;
+
+window.onscroll = function() {setSticky()};
+
+const stickyStart = fav.offsetTop;
+const stickyEnd = favFilterEnd.offsetTop;
+console.log(favTrack.offsetTop)
+
+function setSticky() {
+    if (window.pageYOffset >= stickyStart && window.pageYOffset <= stickyEnd) {
+        favControlMenu.classList.add('sticky');
+    }
+     else { 
+        favControlMenu.classList.remove('sticky');
+    }
+}
 
 favSlides.forEach((slide) => {
     slide.style.maxWidth = `${favSlideWidth}px`;
@@ -17,10 +35,9 @@ const favSetPosition = () => {
 favControls.forEach((el,index) => {
     el.addEventListener('click', () => {
         favPosition = (-favSlideWidth) * index;
-        el.disabled = true;
         setTimeout(() => {
             favSetPosition();          
-        }, 500);
+        }, 400);
         setActiveFavSlide(index);
         
     });

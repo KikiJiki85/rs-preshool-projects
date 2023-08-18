@@ -1,13 +1,11 @@
 let position = 0;
 let slidesToShow = 3;
 let sliderCount = 0;
+let flexGap = 25;
 const slidesToScroll = 1;
 
 const slider = document.querySelector('.slider');
 const mediaQuery = window.matchMedia('(max-width: 1024px)');
-if(mediaQuery.matches) {
-   slidesToShow = 1;
-}
 
 const container = slider.querySelector('.slider-wrapper');
 const track = slider.querySelector('.slider-list');
@@ -17,7 +15,13 @@ const tabletPrev = slider.querySelector('.slider-control-tablet1');
 const tabletNext = slider.querySelector('.slider-control-tablet2');
 
 const itemsCount = items.length;
-const itemWidth = container.clientWidth / slidesToShow;
+let itemWidth = (container.clientWidth - flexGap * 2) / slidesToShow ;
+
+if(mediaQuery.matches) {
+   slidesToShow = 1;
+   itemWidth = container.clientWidth / slidesToShow ;
+}
+
 const movePosition = slidesToScroll * itemWidth;
 
 items.forEach((item) => {
@@ -26,9 +30,8 @@ items.forEach((item) => {
 
 sliderControls.forEach((el,index) => {
    el.addEventListener('click', () => {
-      position = -itemWidth * index;
+      position = (-itemWidth - flexGap) * index;
       setPosition();
-
       sliderCount = index;
       setActiveButton(sliderCount);
    });
@@ -59,7 +62,7 @@ const setActiveButton = (index) => {
 tabletPrev.addEventListener('click', () => {
    const itemsLeft = Math.abs(position) / itemWidth;
 
-   position += itemsLeft >= slidesToScroll ?  movePosition : itemsLeft * itemWidth;
+   position += itemsLeft >= slidesToScroll ?  movePosition + flexGap : itemsLeft * itemWidth + flexGap * 4;
    setPosition();
    
    sliderCount--;
@@ -69,8 +72,7 @@ tabletPrev.addEventListener('click', () => {
 
 tabletNext.addEventListener('click', () => {
    const itemsLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
-
-   position -= itemsLeft >= slidesToScroll ?  movePosition : itemsLeft * itemWidth;
+   position -= itemsLeft >= slidesToScroll ?  movePosition + flexGap: itemsLeft * itemWidth + flexGap * 4;
    setPosition();
 
    sliderCount++;

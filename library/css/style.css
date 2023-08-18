@@ -56,7 +56,7 @@ input[type='radio'].visually-hidden {
     -webkit-clip-path: inset(100%);
     clip-path: inset(100%);
     clip: rect (0 0 0 0);
-    overflow: hidden;
+    overflow: clip;
 }
 
 .page-body {
@@ -242,6 +242,7 @@ img {
     padding: 0;
     display: flex;
     transition: transform 1s ease-out;
+    gap: 25px;
 }
 
 .slider-item {
@@ -307,7 +308,7 @@ img {
     margin-bottom: 32px;
 }
 
-.fav-filter-wrapper {
+.fav-controls-wrapper {
     display: flex;
     gap: 72px;
 }
@@ -861,15 +862,33 @@ span.book-author {
 
     .favorites {
         padding-top: 4px;
+        position: relative;
+    }
+
+    .fav-filter {
+        overflow: hidden;
+    }
+
+
+    .fav-controls-wrapper {
+        position: sticky;
+        top: 0;
+        background-color: rgba(210,210,210,0.7);
+        z-index: 10;
+        padding: 5px 10px;
     }
 
     .fav-filter-pack {
         grid-template-columns: 1fr;
     }
-
-    .fav-filter-list {
+    
+    .fav-slides-wrapper {
         padding-left: 69px;
-        padding-right: 109px;
+        padding-right: 108px;
+    }
+
+    .fav-filter-header {
+        margin-top: 60px;
     }
 
     .shop-menu-wrapper {
@@ -960,13 +979,18 @@ span.book-author {
         visibility: visible;
         opacity: 1;
     }
+
+    .sticky {
+        position: fixed;
+        top: 15px;
+    }
 }
 
 @media (max-width: 768px) {
 }
 
 @media (max-width: 640px) {
-    .fav-filter-wrapper {
+    .fav-controls-wrapper {
         gap: 20px;
     }
 }
