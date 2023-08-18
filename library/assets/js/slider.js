@@ -11,12 +11,11 @@ let favPosition = 0;
 
 window.onscroll = function() {setSticky()};
 
-const stickyStart = fav.offsetTop;
-const stickyEnd = favFilterEnd.offsetTop;
-console.log(favTrack.offsetTop)
+const stickyStart = fav.offsetTop + favControlMenu.offsetTop;
+const stickyEnd = favFilterEnd.offsetTop - favControlMenu.offsetTop;
 
 function setSticky() {
-    if (window.pageYOffset >= stickyStart && window.pageYOffset <= stickyEnd) {
+    if (window.pageYOffset > stickyStart && window.pageYOffset < stickyEnd) {
         favControlMenu.classList.add('sticky');
     }
      else { 

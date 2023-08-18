@@ -43,7 +43,9 @@ const setPosition = () => {
 
 const setActiveButton = (index) => {
    sliderControls.forEach((item) => item.classList.remove('active-slide'));
+   sliderControls.forEach((item) => item.disabled = false);
    sliderControls[index].classList.add('active-slide');
+   sliderControls[index].disabled = true;
    switch(index) {
       case 0: 
          tabletPrev.disabled = true;
