@@ -310,29 +310,28 @@ img {
     font-weight: 700;
     line-height: normal;
     margin-top: 63px;
-    margin-bottom: 32px;
+    margin-bottom: 38px;
 }
 
 .fav-controls-wrapper {
     display: flex;
-    gap: 72px;
+    gap: 76px;
+    margin-bottom: 40px;
 }
 
-.fav-filter label {
+.fav-filter-control {
     position: relative;
     cursor: pointer;
-    padding-left: 37px;
+    padding-left: 20px;
+    padding-right: 0;
     display: inline-block;
     width: 120px;
     margin: 0;
+    background-color: transparent;
+    border: none;
 }
 
-.fav-filter label:last-of-type {
-    margin-left: 10px;
-} 
-
-
-.fav-input-radio+label::before {
+.fav-filter-control::before {
     content: '';
     width: 25px;
     height: 25px;
@@ -340,24 +339,17 @@ img {
     background-image: url(../assets/img/fav-radio-off.svg);
     background-repeat: no-repeat;
     background-position: 4px 4px;
-    top: 9px;
-    left: -3px;
+    top: 0px;
+    left: -4px;
 }
 
-.fav-input-radio:checked+label {
+.fav-filter-control:disabled{
     font-weight: 700;
+    color: #0C0C0E;
 }
 
-.fav-input-radio:checked+label::before {
-    content: '';
-    width: 25px;
-    height: 25px;
-    position: absolute;
+.fav-filter-control:disabled::before {
     background-image: url(../assets/img/fav-radio-on.svg);
-    background-repeat: no-repeat;
-    background-position: 4px 4px;
-    top: 9px;
-    left: -3px;
 }
 
 .fav-filter-list {
@@ -371,7 +363,7 @@ img {
 .fav-slide {
     min-width: 100%;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.4s;
 }
 
 .fav-active-slide{
@@ -384,7 +376,7 @@ img {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 550px 550px;
-    gap: 38px 260px;
+    gap: 40px 260px;
 }
 
 .filter-item-text {
@@ -874,13 +866,13 @@ span.book-author {
         overflow: hidden;
     }
 
+    .fav-filter-list {
+        margin-top: 28px;
+    }
 
     .fav-controls-wrapper {
-        position: sticky;
-        top: 0;
-        background-color: rgba(210,210,210,0.8);
-        z-index: 10;
-        padding: 5px 10px;
+        padding: 10px 0;
+        margin-bottom: 0;
     }
 
     .fav-filter-pack {
@@ -894,6 +886,7 @@ span.book-author {
 
     .fav-filter-header {
         margin-top: 60px;
+        margin-bottom: 31px;
     }
 
     .shop-menu-wrapper {
@@ -990,6 +983,8 @@ span.book-author {
         top: 15px;
         opacity: 0.8;
         transition: all 0.5s;
+        background-color: rgba(210,210,210,0.8);
+        z-index: 10;
     }
 }
 

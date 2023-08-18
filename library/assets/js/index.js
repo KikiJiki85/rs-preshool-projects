@@ -1,7 +1,10 @@
+
 const menuToggle = document.querySelector(".header-burger");
 const menuPopup = document.querySelector(".header");
 const menu = document.querySelector(".nav-list");
 const menuLinks = document.querySelectorAll(".nav-link");
+
+const checkCard = document.querySelector('.form-search-btn');
 
 
 menuToggle.addEventListener("click", function(evt) {
@@ -30,4 +33,8 @@ document.body.addEventListener('click', (evt) => {
    menuPopup.classList.remove("menu-toggle");
 });
 
-console.log(``);
+
+checkCard.addEventListener('click', (evt) => {
+   evt.preventDefault();
+});
+

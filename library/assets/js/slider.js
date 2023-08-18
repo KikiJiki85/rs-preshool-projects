@@ -36,7 +36,7 @@ favControls.forEach((el,index) => {
         favPosition = (-favSlideWidth) * index;
         setTimeout(() => {
             favSetPosition();          
-        }, 400);
+        }, 300);
         setActiveFavSlide(index);
         
     });
@@ -46,6 +46,7 @@ const setActiveFavSlide = (index) => {
     favSlides.forEach((item) => item.classList.remove('fav-active-slide'));
     setTimeout(() => {
         favSlides[index].classList.add('fav-active-slide'); 
-    }, 500);
-    
+    }, 400);
+    favControls.forEach(el => el.disabled = false);
+    favControls[index].disabled = true;
 };
