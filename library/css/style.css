@@ -123,6 +123,7 @@ img {
 }
 
 .nav-list a::after,
+.drop-menu__field::after,
 .footer-address::after,
 .footer-bottom a::after {
     content: '';
@@ -133,6 +134,19 @@ img {
     height: 2px;
     background-color: #ffffff;
     transition: width 0.3s ease-out;
+}
+
+.drop-menu__field {
+    position: relative;
+}
+
+.drop-menu__field::after {
+    background-color: #0C0C0E;
+}
+
+.drop-menu__field:hover:after,
+.drop-menu__field:focus:after {
+    width: 100%;
 }
 
 .nav-list a:hover::after,
@@ -189,7 +203,7 @@ img {
     color: #000000;
     padding: 5px 10px 20px;
     gap: 10px;
-    transition: all 1s;
+    transition: all 0.8s;
     opacity: 0;
     transform: translateX(185px); 
 }
@@ -197,7 +211,7 @@ img {
 .drop-toggle {
     opacity: 1;
     transform: translateX(0);
-    transition: all 1s;
+    transition: all 0.8s;
 }
 
 
@@ -815,6 +829,133 @@ span.book-author {
     background-color: #ffffff;;
     position: absolute;
     top: -2px;
+}
+
+.modal-register {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(210,210,210,0.8);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-register__wrapper {
+    width: 250px;
+    height: 382px;
+    padding: 20px 25px;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.modal-register__header {
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Forum;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+    cursor: default;
+}
+
+.modal-register__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-register__label {
+    color: #000;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+}
+
+.modal-register__input {
+    height: 20px;
+    outline: 1px solid #BB945F;
+    border: none;
+    font-size: 15px;
+    line-height: normal;
+    padding: 2px 5px;
+}
+
+.modal-register__input:focus{
+    outline-width: 2px;
+}
+
+.modal-register__btn {
+    margin-top: 10px;
+}
+
+.modal-register__small {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.modal-register__small span {
+    color: #000;
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-register__login {
+    color: #0C0C0E;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-decoration-line: underline;
+}
+
+.modal-register__login:hover {
+    text-decoration: none;
+}
+
+.modal-register__close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    display: block;
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.3s;
+}
+.modal-register__close::before,
+.modal-register__close::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background-color: #000;
+    top: 50%;
+    left: 50%;
+}
+
+.modal-register__close::before {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.modal-register__close::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-register__close:hover {
+    background-color: #BB945F;
 }
 
 @media (max-width: 1024px) {
