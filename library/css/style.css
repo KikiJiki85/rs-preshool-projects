@@ -158,14 +158,21 @@ img {
     width: 28px;
     height: 28px;
     margin-left: 40px;
-    opacity: 1;
     cursor: pointer;
     position: relative;
 }
 
-.header-profile:hover svg {
-    opacity: 0.5;
+.profile-button {
     transition: 0.3s;
+    opacity: 1;
+}
+
+.profile-button:hover {
+    opacity: 0.6;
+}
+
+.profile-button:active {
+    opacity: 0.2;
 }
 
 .drop-menu {
@@ -184,7 +191,7 @@ img {
     gap: 10px;
     transition: all 1s;
     opacity: 0;
-    transform: translateX(120px); 
+    transform: translateX(185px); 
 }
 
 .drop-toggle {
@@ -763,11 +770,11 @@ span.book-author {
     height: 24px;
     opacity: 1;
     margin-right: 15px;
+    transition: 0.3s;
 }
 
 .footer-social svg:hover {
     opacity: 0.5;
-    transition: 0.3s;
 }
 
 .footer-working-hours {

@@ -4,8 +4,8 @@ const menuToggle = header.querySelector(".header-burger");
 const menu = header.querySelector(".nav-list");
 const menuLinks = header.querySelectorAll(".nav-link");
 
-const headerProfile = header.querySelector('.header-profile');
-const dropMenu = headerProfile.querySelector('.drop-menu');
+const profileButton = header.querySelector('.profile-button');
+const dropMenu = header.querySelector('.drop-menu');
 
 const checkCard = document.querySelector('.form-search-btn');
 
@@ -15,6 +15,7 @@ menuToggle.addEventListener("click", function(evt) {
    if (header.classList.contains("menu-toggle")) {
     header.classList.remove("menu-toggle");
    } else {
+    dropMenu.classList.remove('drop-toggle');
     header.classList.add("menu-toggle");
    }
 });
@@ -31,23 +32,28 @@ menu.addEventListener("click", (evt) => {
    evt._isClickWithInMenu = true;
 });
 
-document.body.addEventListener('click', (evt) => {
+document.body.addEventListener("click", (evt) => {
    if (evt._isClickWithInMenu) return;
    header.classList.remove("menu-toggle");
+   dropMenu.classList.remove("drop-toggle")
 });
 
 //Profile drop menu
-headerProfile.addEventListener('click', () => {
-   dropMenu.classList.toggle('drop-toggle');
-   dropMenu.addEventListener('transitionend', () => {
-      
-   });
+profileButton.addEventListener("click", (evt) => {
+   evt._isClickWithInMenu = true;
+   console.log(evt._isClickWithInMenu);
+   dropMenu.classList.toggle("drop-toggle");
+   header.classList.remove("menu-toggle");
+});
+
+dropMenu.addEventListener("click", (evt) => {
+   evt._isClickWithInMenu = true;
 });
 
 
 
 // Find your Library card
-checkCard.addEventListener('click', (evt) => {
+checkCard.addEventListener("click", (evt) => {
    evt.preventDefault();
 });
 
