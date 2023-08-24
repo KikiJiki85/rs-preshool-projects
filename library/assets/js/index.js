@@ -6,6 +6,7 @@ const menuLinks = header.querySelectorAll(".nav-link");
 
 const profileButton = header.querySelector(".profile-button");
 const dropMenu = header.querySelector(".drop-menu");
+const dropMenuAuth = header.querySelector(".drop-menu-auth");
 const register = header.querySelector(".drop-menu__register");
 const modalReg = document.querySelector(".modal-register");
 const modalRegContainer = modalReg.querySelector(".modal-register__wrapper");
@@ -23,6 +24,9 @@ const userProfile = header.querySelector(".profile-user");
 
 const checkCard = document.querySelector(".form-search-btn");
 
+function getRandomInt(min, max) {
+   return Math.floor(Math.random() * (max - min)) + min;
+}
 
 menuToggle.addEventListener("click", function(evt) {
    evt._isClickWithInMenu = true;
@@ -30,6 +34,7 @@ menuToggle.addEventListener("click", function(evt) {
     header.classList.remove("menu-toggle");
    } else {
     dropMenu.classList.remove("drop-toggle");
+    dropMenuAuth.classList.remove("drop-toggle");
     header.classList.add("menu-toggle");
    }
 });
@@ -42,15 +47,22 @@ for(let link of menuLinks) {
    });
 }
 
-menu.addEventListener("click", (evt) => {
+const isClickWidthInMenuHandler = (evt) => {
    evt._isClickWithInMenu = true;
-});
+};
+
+menu.addEventListener("click", isClickWidthInMenuHandler);
+dropMenu.addEventListener("click", isClickWidthInMenuHandler);
+dropMenuAuth.addEventListener("click", isClickWidthInMenuHandler);
+modalRegContainer.addEventListener("click", isClickWidthInMenuHandler);
+
 
 document.body.addEventListener("click", (evt) => {
    if (evt._isClickWithInMenu) return;
    header.classList.remove("menu-toggle");
    dropMenu.classList.remove("drop-toggle");
    modalReg.classList.remove("modal-show");
+   dropMenuAuth.classList.remove("drop-toggle");
 });
 
 //Profile drop menu
@@ -60,21 +72,22 @@ profileButton.addEventListener("click", (evt) => {
    header.classList.remove("menu-toggle");
 });
 
-dropMenu.addEventListener("click", (evt) => {
+
+// Loged in user profle icon click 
+userProfile.addEventListener("click", (evt) => {
    evt._isClickWithInMenu = true;
+   dropMenuAuth.classList.toggle("drop-toggle");
+   header.classList.remove("menu-toggle");
 });
 
-//Drop menu register
 
+
+//Drop menu register
 register.addEventListener("click", (evt) => {
    evt.preventDefault();
    dropMenu.classList.toggle("drop-toggle");
    modalReg.classList.add("modal-show");
    regFirstName.focus();
-});
-
-modalRegContainer.addEventListener("click", (evt) => {
-   evt._isClickWithInMenu = true;
 });
 
 modalRegClose.addEventListener("click", () => {
@@ -93,8 +106,9 @@ getCardReg.addEventListener("click", (evt) => {
 registerForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    let oldStorage = [];
+   let cardNumber = getRandomInt(10000000000,59999999999).toString(16).toUpperCase();
 
-   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value};
+   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber};
    try {
       let currentStorage = localStorage.getItem('users');
       
@@ -110,7 +124,6 @@ registerForm.addEventListener("submit", (evt) => {
    userProfile.textContent = `${newUser.name[0].toUpperCase()}${newUser.lastname[0].toUpperCase()}`;
    userProfile.classList.remove("visually-hidden");
 });
-
 
 
 // Find your Library card
