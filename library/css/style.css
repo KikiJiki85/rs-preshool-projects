@@ -124,6 +124,7 @@ img {
 
 .nav-list a::after,
 .drop-menu__field::after,
+.drop-menu-auth__field::after,
 .footer-address::after,
 .footer-bottom a::after {
     content: '';
@@ -136,16 +137,20 @@ img {
     transition: width 0.3s ease-out;
 }
 
-.drop-menu__field {
+.drop-menu__field,
+.drop-menu-auth__field {
     position: relative;
 }
 
-.drop-menu__field::after {
+.drop-menu__field::after,
+.drop-menu-auth__field::after {
     background-color: #0C0C0E;
 }
 
 .drop-menu__field:hover:after,
-.drop-menu__field:focus:after {
+.drop-menu__field:focus:after,
+.drop-menu-auth__field:hover:after,
+.drop-menu-auth__field:focus:after {
     width: 100%;
 }
 
@@ -176,20 +181,40 @@ img {
     position: relative;
 }
 
-.profile-button {
-    transition: 0.3s;
+.profile-button,
+.profile-user {
+    transition: opacity 0.3s;
     opacity: 1;
 }
 
-.profile-button:hover {
+.profile-button:hover,
+.profile-user:hover {
     opacity: 0.6;
 }
 
-.profile-button:active {
+.profile-button:active,
+.profile-user:active {
     opacity: 0.2;
 }
 
-.drop-menu {
+.profile-user {
+    display: flex;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #BB945F;
+    font-size: 15px;
+    line-height: 20px;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+}
+
+.drop-menu,
+.drop-menu-auth {
     position: absolute;
     right: 0;
     top: 30px;
@@ -201,7 +226,7 @@ img {
     height: 115px;
     background-color: #ffffff;
     color: #000000;
-    padding: 5px 10px 20px;
+    padding: 5px 4px 20px;
     gap: 10px;
     transition: all 0.8s;
     opacity: 0;
@@ -215,7 +240,8 @@ img {
 }
 
 
-.drop-menu__title {
+.drop-menu__title,
+.drop-menu-auth__title {
     font-size: 15px;
     font-weight: 700;
     line-height: 20px; 
@@ -224,7 +250,8 @@ img {
     position: relative;
 }
 
-.drop-menu__title::after {
+.drop-menu__title::after,
+.drop-menu-auth__title::after {
     content: '';
     position: absolute;
     width: 40px;
@@ -234,6 +261,7 @@ img {
     right: 3px;
 }
 
+.drop-menu-auth__field,
 .drop-menu__field {
     color: #000;
     font-size: 15px;
@@ -842,6 +870,14 @@ span.book-author {
     justify-content: center;
     align-items: center;
     z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.7s;
+}
+
+.modal-show {
+    visibility: visible;
+    opacity: 1;
 }
 
 .modal-register__wrapper {
@@ -881,16 +917,26 @@ span.book-author {
 
 .modal-register__input {
     height: 20px;
-    outline: 1px solid #BB945F;
     border: none;
     font-size: 15px;
     line-height: normal;
     padding: 2px 5px;
+    outline: 1px solid #BB945F;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
 }
 
-.modal-register__input:focus{
-    outline-width: 2px;
+
+.modal-register__input:focus {
+    /* outline: none; */
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
 }
+
+.modal-register__input:focus:invalid {
+    border-bottom: 2px solid #ff7730;
+}
+
 
 .modal-register__btn {
     margin-top: 10px;
