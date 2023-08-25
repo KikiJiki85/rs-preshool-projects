@@ -19,10 +19,16 @@ const regLastName = modalReg.querySelector("#register-last-name");
 const regEmail = modalReg.querySelector("#register-email");
 const regPassword = modalReg.querySelector("#register-password");
 let isStorageSupport = true;
+let isUserLogedIn = false;
 let newUser = {};
 const userProfile = header.querySelector(".profile-user");
 
-const checkCard = document.querySelector(".form-search-btn");
+const libraryCardSearchForm = document.querySelector(".library-card-search__form");
+const checkCard = libraryCardSearchForm.querySelector(".form-search-btn");
+const findCardName = libraryCardSearchForm.querySelector("#reader-name");
+const findCardNumber = libraryCardSearchForm.querySelector("#card-number");
+const findCardInput = libraryCardSearchForm.querySelectorAll(".library-card-search__input");
+const userInfo = libraryCardSearchForm.querySelector(".user-info");
 
 function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min;
@@ -109,6 +115,8 @@ registerForm.addEventListener("submit", (evt) => {
    let cardNumber = getRandomInt(10000000000,59999999999).toString(16).toUpperCase();
 
    newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber};
+   isUserLogedIn = true;
+
    try {
       let currentStorage = localStorage.getItem('users');
       
@@ -127,7 +135,39 @@ registerForm.addEventListener("submit", (evt) => {
 
 
 // Find your Library card
-checkCard.addEventListener("click", (evt) => {
+
+libraryCardSearchForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
+   let cardNameSearch = findCardName.value;
+   let cardNumberSearch = findCardNumber.value;
+   let usersData = JSON.parse(localStorage.getItem("users"));
+   let found = usersData.filter((el) => el.name === cardNameSearch && el.cardNumber === cardNumberSearch);
+
+   if(!!found.length) {
+      checkCard.style = "display:none";
+      userInfo.classList.remove("visually-hidden");
+      findCardName.disabled = true;
+      findCardNumber.disabled = true;
+      setTimeout(() => {
+         checkCard.style = "";
+         userInfo.classList.add("visually-hidden");
+         findCardName.value = "";
+         findCardNumber.value = "";
+         findCardName.disabled = false;
+         findCardNumber.disabled = false;
+      }, 10000);
+      
+   } else {
+      console.log('no such user');
+      findCardInput.forEach(el => el.classList.add("modal-invalid"));
+      findCardName.disabled = true;
+      findCardNumber.disabled = true;
+      setTimeout(() => {
+         findCardInput.forEach(el => el.classList.remove("modal-invalid"));
+         findCardName.disabled = false;
+         findCardNumber.disabled = false;
+      },3000);
+   }
+   
 });
 

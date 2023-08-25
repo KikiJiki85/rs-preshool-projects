@@ -331,19 +331,44 @@
                 <div class="library-card-wrapper">
                     <section class="library-card-search">
                         <h3>Find your Library card</h3>
-                        <form action="#" method="post">
+                        <form class="library-card-search__form" action="#" method="get">
                             <div class="form-wrapper">
                                 <h4>Brooklyn public library</h4>
                                 <p>
                                     <label class="visually-hidden" for="reader-name">Reader's name</label>
-                                    <input type="text" pattern="^[A-Za-z]+$" id="reader-name" name="reader" placeholder="Reader's name">
+                                    <input class="library-card-search__input" type="text" id="reader-name" name="reader" placeholder="Reader's name" required>
                                 </p>
                                 <p>
                                     <label class="visually-hidden" for="card-number">Card number</label>
-                                    <input type="number" id="card-number" name="card" placeholder="Card number">
+                                    <input class="library-card-search__input" type="text" pattern="[A-Za-z0-9]{9}" title="You need to enter nine digit card number" id="card-number" name="card" placeholder="Card number" required>
                                 </p>
                             </div>
                             <button class="btn form-search-btn" type="submit">Check the card</button>
+                            <ul class="user-info visually-hidden">
+                                <li class="user-info__item">
+                                    <span>Visits</span>
+                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                                    </svg>
+                                    <span class="user-info__item--visits">23</span>
+                                </li>
+                                <li class="user-info__item">
+                                    <span>Bonuses</span>
+                                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                                    </svg>
+                                    <span class="user-info__item--bonuses">1240</span>
+                                </li>
+                                <li class="user-info__item">
+                                    <span>Books</span>
+                                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="20" height="21" fill="#BB945F"/>
+                                        <rect x="2" width="1" height="19" fill="#826844"/>
+                                        <rect x="1" width="1" height="21" fill="white"/>
+                                    </svg>                                        
+                                    <span class="user-info__item--books">2</span>
+                                </li>
+                            </ul>
                         </form>
                     </section>
                     <section class="library-card-get">

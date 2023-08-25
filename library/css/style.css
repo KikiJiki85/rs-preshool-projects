@@ -719,7 +719,7 @@ span.book-author {
     margin-bottom: 25px;
 }
 
-.library-card-search input {
+.library-card-search__input {
     color: #8E8E8E;
     font-family: 'Forum', sans-serif;
     font-size: 30px;
@@ -731,10 +731,22 @@ span.book-author {
     width: 100%;
 }
 
-.library-card-search input:focus {
+.library-card-search__input:disabled {
+    background-color: #ffffff;
+    color: #BB945F;
+}
+
+.library-card-search__input.modal-invalid {
+    background-color: #f6dada;
+}
+
+.library-card-search__input:focus {
     outline: 5px solid #8E8E8E;
+    color: #BB945F;
     transition: 0.3s;
 }
+
+
 
 .form-search-btn {
     width: 242px;
@@ -769,6 +781,31 @@ span.book-author {
     margin-top: 35px;
     margin-bottom: 27px;
     letter-spacing: 0.4px;
+}
+
+.user-info {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    padding-left: 0;
+    margin-top: 15px;
+    margin-bottom: 5px;
+
+}
+
+.user-info__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-info__item span {
+    color: #000;
+    font-size: 10px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
 }
 
 .btn-log-in {
