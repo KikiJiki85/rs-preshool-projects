@@ -8,20 +8,29 @@ const profileButton = header.querySelector(".profile-button");
 const dropMenu = header.querySelector(".drop-menu");
 const dropMenuAuth = header.querySelector(".drop-menu-auth");
 const register = header.querySelector(".drop-menu__register");
+const login = header.querySelector(".drop-menu__login");
+
 const modalReg = document.querySelector(".modal-register");
 const modalRegContainer = modalReg.querySelector(".modal-register__wrapper");
 const modalRegClose = modalReg.querySelector(".modal-register__close");
+const modalRegToModalLog = modalReg.querySelector(".modal-register__login");
+
 const getCardReg = document.querySelector(".library-card-get__register");
+const getCardLog = document.querySelector(".library-card-get__login");
 
 const registerForm = modalReg.querySelector(".modal-register__form");
 const regFirstName = modalReg.querySelector("#register-first-name");
 const regLastName = modalReg.querySelector("#register-last-name");
 const regEmail = modalReg.querySelector("#register-email");
 const regPassword = modalReg.querySelector("#register-password");
-let isStorageSupport = true;
-let isUserLogedIn = false;
-let newUser = {};
+
 const userProfile = header.querySelector(".profile-user");
+
+const modalLog = document.querySelector(".modal-login");
+const modalLogContainer = modalLog.querySelector(".modal-login__wrapper");
+const modalLogClose = modalLog.querySelector(".modal-login__close");
+const modalLogToModalReg = modalLog.querySelector(".modal-login__register");
+const loginForm = modalLog.querySelector(".modal-login__form");
 
 const libraryCardSearchForm = document.querySelector(".library-card-search__form");
 const checkCard = libraryCardSearchForm.querySelector(".form-search-btn");
@@ -30,9 +39,29 @@ const findCardNumber = libraryCardSearchForm.querySelector("#card-number");
 const findCardInput = libraryCardSearchForm.querySelectorAll(".library-card-search__input");
 const userInfo = libraryCardSearchForm.querySelector(".user-info");
 
+const bookBuy = document.querySelectorAll(".book-buy");
+
+let isStorageSupport = true;
+let isUserLogedIn = false;
+let newUser = {};
+
+if(!isUserLogedIn) {
+   bookBuy.forEach((el) => {
+       el.addEventListener("click", (evt) =>  {
+         evt.preventDefault();
+         evt._isClickWithInMenu = true;
+         modalLog.classList.add("modal-show");
+      })
+   });
+}
+
+//Random int function
+
 function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min;
 }
+
+// Main menu
 
 menuToggle.addEventListener("click", function(evt) {
    evt._isClickWithInMenu = true;
@@ -61,6 +90,7 @@ menu.addEventListener("click", isClickWidthInMenuHandler);
 dropMenu.addEventListener("click", isClickWidthInMenuHandler);
 dropMenuAuth.addEventListener("click", isClickWidthInMenuHandler);
 modalRegContainer.addEventListener("click", isClickWidthInMenuHandler);
+modalLogContainer.addEventListener("click", isClickWidthInMenuHandler);
 
 
 document.body.addEventListener("click", (evt) => {
@@ -68,6 +98,7 @@ document.body.addEventListener("click", (evt) => {
    header.classList.remove("menu-toggle");
    dropMenu.classList.remove("drop-toggle");
    modalReg.classList.remove("modal-show");
+   modalLog.classList.remove("modal-show");
    dropMenuAuth.classList.remove("drop-toggle");
 });
 
@@ -79,7 +110,7 @@ profileButton.addEventListener("click", (evt) => {
 });
 
 
-// Loged in user profle icon click 
+// LogedIn user profle icon click 
 userProfile.addEventListener("click", (evt) => {
    evt._isClickWithInMenu = true;
    dropMenuAuth.classList.toggle("drop-toggle");
@@ -88,12 +119,12 @@ userProfile.addEventListener("click", (evt) => {
 
 
 
-//Drop menu register
+//Modal menu register
 register.addEventListener("click", (evt) => {
    evt.preventDefault();
    dropMenu.classList.toggle("drop-toggle");
    modalReg.classList.add("modal-show");
-   regFirstName.focus();
+   // regFirstName.focus();
 });
 
 modalRegClose.addEventListener("click", () => {
@@ -103,6 +134,35 @@ modalRegClose.addEventListener("click", () => {
 getCardReg.addEventListener("click", (evt) => {
    evt.preventDefault();
    evt._isClickWithInMenu = true;
+   modalReg.classList.add("modal-show");
+});
+
+modalRegToModalLog.addEventListener("click", (evt) => {
+   evt.preventDefault();
+   modalReg.classList.remove("modal-show");
+   modalLog.classList.add("modal-show");
+});
+
+//Modal menu login
+login.addEventListener("click", (evt) => {
+   evt.preventDefault();
+   dropMenu.classList.toggle("drop-toggle");
+   modalLog.classList.add("modal-show");
+});
+
+modalLogClose.addEventListener("click", () => {
+   modalLog.classList.remove("modal-show");
+});
+
+getCardLog.addEventListener("click", (evt) => {
+   evt.preventDefault();
+   evt._isClickWithInMenu = true;
+   modalLog.classList.add("modal-show");
+});
+
+modalLogToModalReg.addEventListener("click", (evt) => {
+   evt.preventDefault();
+   modalLog.classList.remove("modal-show");
    modalReg.classList.add("modal-show");
 });
 
@@ -132,6 +192,9 @@ registerForm.addEventListener("submit", (evt) => {
    userProfile.textContent = `${newUser.name[0].toUpperCase()}${newUser.lastname[0].toUpperCase()}`;
    userProfile.classList.remove("visually-hidden");
 });
+
+// New user login 
+
 
 
 // Find your Library card

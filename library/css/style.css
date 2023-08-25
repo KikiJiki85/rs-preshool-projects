@@ -792,7 +792,6 @@ span.book-author {
     padding-left: 0;
     margin-top: 15px;
     margin-bottom: 5px;
-
 }
 
 .user-info__item {
@@ -808,7 +807,7 @@ span.book-author {
     letter-spacing: 0.2px;
 }
 
-.btn-log-in {
+.library-card-get__login {
     margin-left: 14px;
 }
 
@@ -896,7 +895,8 @@ span.book-author {
     top: -2px;
 }
 
-.modal-register {
+.modal-register,
+.modal-login {
     position: fixed;
     top: 0;
     left: 0;
@@ -918,14 +918,23 @@ span.book-author {
 }
 
 .modal-register__wrapper {
-    width: 250px;
     height: 382px;
+}
+
+.modal-login__wrapper {
+    height: 262px;
+}
+
+.modal-register__wrapper,
+.modal-login__wrapper {
+    width: 250px;   
     padding: 20px 25px;
     background-color: #ffffff;
     position: relative;
 }
 
-.modal-register__header {
+.modal-register__header,
+.modal-login__header {
     color: #000;
     text-align: center;
     font-size: 20px;
@@ -939,20 +948,23 @@ span.book-author {
     cursor: default;
 }
 
-.modal-register__form {
+.modal-register__form,
+.modal-login__form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.modal-register__label {
+.modal-register__label,
+.modal-login__label {
     color: #000;
     font-size: 15px;
     line-height: 20px;
     letter-spacing: 0.3px;
 }
 
-.modal-register__input {
+.modal-register__input,
+.modal-login__input {
     height: 20px;
     border: none;
     font-size: 15px;
@@ -964,28 +976,32 @@ span.book-author {
 }
 
 
-.modal-register__input:focus {
-    /* outline: none; */
+.modal-register__input:focus,
+.modal-login__input:focus {
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid #55c57a;
 }
 
-.modal-register__input:focus:invalid {
+.modal-register__input:focus:invalid,
+.modal-login__input:focus:invalid {
     border-bottom: 2px solid #ff7730;
 }
 
 
-.modal-register__btn {
+.modal-register__btn,
+.modal-login__btn {
     margin-top: 10px;
 }
 
-.modal-register__small {
+.modal-register__small,
+.modal-login__small {
     display: flex;
     gap: 12px;
     margin-top: 10px;
 }
 
-.modal-register__small span {
+.modal-register__small span,
+.modal-login__small span  {
     color: #000;
     text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
     font-size: 10px;
@@ -993,7 +1009,8 @@ span.book-author {
     line-height: normal;
 }
 
-.modal-register__login {
+.modal-register__login,
+.modal-login__register  {
     color: #0C0C0E;
     font-size: 10px;
     font-weight: 700;
@@ -1002,11 +1019,13 @@ span.book-author {
     text-decoration-line: underline;
 }
 
-.modal-register__login:hover {
+.modal-register__login:hover,
+.modal-login__register:hover {
     text-decoration: none;
 }
 
-.modal-register__close {
+.modal-register__close,
+.modal-login__close {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -1019,7 +1038,9 @@ span.book-author {
     transition: all 0.3s;
 }
 .modal-register__close::before,
-.modal-register__close::after {
+.modal-register__close::after,
+.modal-login__close::before,
+.modal-login__close::after {
     content: '';
     position: absolute;
     width: 20px;
@@ -1029,15 +1050,18 @@ span.book-author {
     left: 50%;
 }
 
-.modal-register__close::before {
+.modal-register__close::before,
+.modal-login__close::before {
     transform: translate(-50%, -50%) rotate(135deg);
 }
 
-.modal-register__close::after {
+.modal-register__close::after,
+.modal-login__close::after {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.modal-register__close:hover {
+.modal-register__close:hover,
+.modal-login__close:hover {
     background-color: #BB945F;
 }
 

@@ -39,7 +39,7 @@
                     <span class="profile-user visually-hidden"></span>
                     <div class="drop-menu">
                         <span class="drop-menu__title">Profile</span>
-                        <a class="drop-menu__field" href="#">Log In</a>
+                        <a class="drop-menu__field drop-menu__login" href="#">Log In</a>
                         <a class="drop-menu__field drop-menu__register" href="#">Register</a>
                     </div>
                     <div class="drop-menu-auth">
@@ -375,7 +375,7 @@
                         <h3>Get a reader card</h3>
                         <p>You will be able to see a reader card after logging into account or you can register a new account</p>
                         <button class="btn library-card-get__register" type="button">Sign Up</button>
-                        <button class="btn btn-log-in" type="button">Log in</button>
+                        <button class="btn btn-log-in library-card-get__login" type="button">Log in</button>
                     </section>
                 </div>
             </section>
@@ -446,6 +446,25 @@
             <span class="modal-register__close"></span>
         </div>
     </section>
+    <section class="modal-login">
+        <div class="modal-login__wrapper">
+            <h2 class="modal-login__header">Login</h2>
+            <form class="modal-login__form" method="get" action="#">
+                <label class="modal-login__label" for="login-name">E-mail or readers card</label>
+                <input class="modal-login__input" id="login-name" name="login-name" type="text" required>
+
+                <label class="modal-login__label" for="login-password">Password</label>
+                <input class="modal-login__input" id="login-password" name="login-password" type="password" required pattern="[A-Za-z0-9]{8,}" title="The password shold be minimum 8 symbols long">
+
+                <button class="modal-login__btn btn" type="submit">Log In</button>
+            </form>
+            <p class="modal-login__small">
+                <span>Don’t have an account?</span>
+                <a href="#" class="modal-login__register">Register</a>
+            </p>
+            <span class="modal-login__close"></span>
+        </div>
+
     <script src="assets/js/index.js"></script>
     <script src="assets/js/carousel.js"></script>
     <script src="assets/js/slider.js"></script>
