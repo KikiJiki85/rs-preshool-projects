@@ -31,6 +31,9 @@ const modalLogContainer = modalLog.querySelector(".modal-login__wrapper");
 const modalLogClose = modalLog.querySelector(".modal-login__close");
 const modalLogToModalReg = modalLog.querySelector(".modal-login__register");
 const loginForm = modalLog.querySelector(".modal-login__form");
+const loginName = modalLog.querySelector("#login-name");
+const loginPass = modalLog.querySelector("#login-password");
+const loginBtn = modalLog.querySelector(".modal-login__btn");
 
 const libraryCardSearchForm = document.querySelector(".library-card-search__form");
 const checkCard = libraryCardSearchForm.querySelector(".form-search-btn");
@@ -43,6 +46,7 @@ const bookBuy = document.querySelectorAll(".book-buy");
 
 let isStorageSupport = true;
 let isUserLogedIn = false;
+let libLocalStorage = [];
 let newUser = {};
 
 if(!isUserLogedIn) {
@@ -171,7 +175,6 @@ modalLogToModalReg.addEventListener("click", (evt) => {
 
 registerForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
-   let oldStorage = [];
    let cardNumber = getRandomInt(10000000000,59999999999).toString(16).toUpperCase();
 
    newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber};
@@ -180,31 +183,62 @@ registerForm.addEventListener("submit", (evt) => {
    try {
       let currentStorage = localStorage.getItem('users');
       
-      if (!!currentStorage) oldStorage = JSON.parse(currentStorage);
+      if (!!currentStorage) libLocalStorage = JSON.parse(currentStorage);
    } catch(err) {
       isStorageSupport = false;
    }
-   oldStorage.push(newUser);
-   localStorage.setItem('users', JSON.stringify(oldStorage));
+   libLocalStorage.push(newUser);
+   localStorage.setItem('users', JSON.stringify(libLocalStorage));
 
    modalReg.classList.remove("modal-show");
    profileButton.classList.add("visually-hidden");
    userProfile.textContent = `${newUser.name[0].toUpperCase()}${newUser.lastname[0].toUpperCase()}`;
+   userProfile.title = `${newUser.name} ${newUser.lastname}`;
    userProfile.classList.remove("visually-hidden");
+   isUserLogedIn = true;
 });
 
 // New user login 
 
+loginForm.addEventListener("submit", (evt) => {
+   evt.preventDefault();
 
+   try {
+      let currentStorage = localStorage.getItem('users');
+   
+      if (!!currentStorage) libLocalStorage = JSON.parse(currentStorage);
+   } catch(err) {
+      isStorageSupport = false;
+   }
+
+   let currentUser = libLocalStorage.filter((el) => 
+               (el.mail === loginName.value || el.cardNumber === loginName.value) && el.pass === loginPass.value);
+   if(!!currentUser.length) {
+      isUserLogedIn = true;
+      modalLog.classList.remove("modal-show");
+      profileButton.classList.add("visually-hidden");
+      userProfile.textContent = `${currentUser[0].name[0].toUpperCase()}${currentUser[0].lastname[0].toUpperCase()}`;
+      userProfile.title = `${currentUser[0].name} ${currentUser[0].lastname}`;
+      userProfile.classList.remove("visually-hidden"); 
+   } else {
+      loginName.classList.add("modal-invalid");
+      loginPass.classList.add("modal-invalid");
+      loginBtn.disabled = true;
+      setTimeout(() => {
+         loginName.classList.remove("modal-invalid");
+         loginPass.classList.remove("modal-invalid");
+         loginBtn.disabled = false;
+      },3000);
+   }
+
+});
 
 // Find your Library card
 
 libraryCardSearchForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
-   let cardNameSearch = findCardName.value;
-   let cardNumberSearch = findCardNumber.value;
    let usersData = JSON.parse(localStorage.getItem("users"));
-   let found = usersData.filter((el) => el.name === cardNameSearch && el.cardNumber === cardNumberSearch);
+   let found = usersData.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value);
 
    if(!!found.length) {
       checkCard.style = "display:none";

@@ -736,7 +736,8 @@ span.book-author {
     color: #BB945F;
 }
 
-.library-card-search__input.modal-invalid {
+.library-card-search__input.modal-invalid,
+.modal-login__input.modal-invalid {
     background-color: #f6dada;
 }
 
