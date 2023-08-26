@@ -230,7 +230,8 @@ img {
     gap: 10px;
     transition: all 0.8s;
     opacity: 0;
-    transform: translateX(185px); 
+    transform: translateX(185px);
+    cursor: default; 
 }
 
 .drop-toggle {
@@ -242,12 +243,19 @@ img {
 
 .drop-menu__title,
 .drop-menu-auth__title {
-    font-size: 15px;
     font-weight: 700;
     line-height: 20px; 
     margin-bottom: 10px;
     cursor: default;
     position: relative;
+}
+
+.drop-menu__title {
+    font-size: 15px;
+}
+
+.drop-menu-auth__title {
+    font-size: 12px;
 }
 
 .drop-menu__title::after,
@@ -257,8 +265,15 @@ img {
     width: 40px;
     height: 1px;
     background-color: #BB945F;
-    bottom: -5px;
+    bottom: -5px;   
+}
+
+.drop-menu__title::after {
     right: 3px;
+}
+
+.drop-menu-auth__title::after {
+    right: 13px;
 }
 
 .drop-menu-auth__field,

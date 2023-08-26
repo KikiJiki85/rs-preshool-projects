@@ -7,6 +7,7 @@ const menuLinks = header.querySelectorAll(".nav-link");
 const profileButton = header.querySelector(".profile-button");
 const dropMenu = header.querySelector(".drop-menu");
 const dropMenuAuth = header.querySelector(".drop-menu-auth");
+const dropMenuAuthTitle = header.querySelector(".drop-menu-auth__title");
 const register = header.querySelector(".drop-menu__register");
 const login = header.querySelector(".drop-menu__login");
 
@@ -194,6 +195,7 @@ registerForm.addEventListener("submit", (evt) => {
    profileButton.classList.add("visually-hidden");
    userProfile.textContent = `${newUser.name[0].toUpperCase()}${newUser.lastname[0].toUpperCase()}`;
    userProfile.title = `${newUser.name} ${newUser.lastname}`;
+   dropMenuAuthTitle.textContent = `${currentUser[0].cardNumber}`;
    userProfile.classList.remove("visually-hidden");
    isUserLogedIn = true;
 });
@@ -219,6 +221,7 @@ loginForm.addEventListener("submit", (evt) => {
       profileButton.classList.add("visually-hidden");
       userProfile.textContent = `${currentUser[0].name[0].toUpperCase()}${currentUser[0].lastname[0].toUpperCase()}`;
       userProfile.title = `${currentUser[0].name} ${currentUser[0].lastname}`;
+      dropMenuAuthTitle.textContent = `${currentUser[0].cardNumber}`;
       userProfile.classList.remove("visually-hidden"); 
    } else {
       loginName.classList.add("modal-invalid");
