@@ -913,7 +913,8 @@ span.book-author {
 
 .modal-register,
 .modal-login,
-.modal-myprofile {
+.modal-myprofile,
+.modal-buycard {
     position: fixed;
     top: 0;
     left: 0;
@@ -943,12 +944,20 @@ span.book-author {
 }
 
 .modal-myprofile__wrapper {
+    width: 600px;
     height: 400px;
     background-color: #ffffff;
     display: flex;
-    width: 600px;
     position: relative;
+}
 
+.modal-buycard__wrapper {
+    width: 650px;
+    height: 540px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .modal-register__wrapper,
@@ -1208,6 +1217,53 @@ span.modal-myprofile__user-stats {
 
 .modal-myprofile__copy {
     cursor: pointer;
+}
+
+.modal-buycard__header {
+    color: #FFF;
+    background-color: #0C0C0E;
+    min-height: 60px;
+    margin: 0;
+    font-family: Forum;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-buycard__content-wrapper {
+    padding: 30px 40px 40px 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.modal-buycard__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-buycard__label {
+    color: #000;
+    text-align: left;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+}
+
+.modal-buycard__input {
+    border: 1px solid #BB945F;
+    height: 20px;
+}
+
+.modal-buycard__text {
+    color: #8E8E8E;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 2px;
 }
 
 @media (max-width: 1024px) {

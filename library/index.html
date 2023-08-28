@@ -340,7 +340,7 @@
                                 </p>
                                 <p>
                                     <label class="visually-hidden" for="card-number">Card number</label>
-                                    <input class="library-card-search__input" type="text" pattern="[A-Za-z0-9]{9}" title="You need to enter nine digit card number" id="card-number" name="card" placeholder="Card number" required>
+                                    <input class="library-card-search__input" type="text" pattern="[A-Za-z0-9]{9}" title="You need to enter nine digit card number" id="card-number" name="card-number" placeholder="Card number" required>
                                 </p>
                             </div>
                             <button class="btn form-search-btn" type="submit">Check the card</button>
@@ -516,6 +516,35 @@
                 </p>
             </div>
             <span class="modal-myprofile__close"></span>
+        </div>
+    </section>
+    <section class="modal-buycard modal-show">
+        <div class="modal-buycard__wrapper">
+            <h2 class="modal-buycard__header">Buy a library card</h2>
+            <div class="modal-buycard__content-wrapper">
+                <form action="#" class="modal-buycard__form">
+                    <label class="modal-buycard__label" for="bank-card" >Bank card number</label>
+                    <input class="modal-buycard__input" type="text" id="bank-card" name="bank-card">
+                    <label class="modal-buycard__label" for="exp-code">Expiration code</label>
+                    <input class="modal-buycard__input" type="text" id="exp-code" name="exp-code">
+                    <input class="modal-buycard__input" type="text" id="exp-code2" name="exp-code2">
+                    <label class="modal-buycard__label" for="cvc">CVC</label>
+                    <input class="modal-buycard__input" type="text" id="cvc" name="cvc">
+                    <label class="modal-buycard__label" for="cardholder">Cardholder name</label>
+                    <input class="modal-buycard__input" type="text" id="cardholder" name="cardholder">
+                    <label class="modal-buycard__label" for="postal-code">Postal code</label>
+                    <input class="modal-buycard__input" type="text" id="postal-code" name="postal-code">
+                    <label class="modal-buycard__label" for="city">City / Town</label>
+                    <input class="modal-buycard__input" type="text" id="city" name="city">
+                    <div class="modal-buycard__price-wrapper">
+                        <button class="btn modal-buycard__button" type="button">Buy</button>
+                        <span class="modal-buycard__price">$ 25.00</span>
+                    </div>
+                </form>
+                <p class="modal-buycard__text">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+                </p>
+            </div>
+            <span class="modal-buycard__close"></span>
         </div>
     </section>
     <script src="assets/js/index.js"></script>

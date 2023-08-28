@@ -9,6 +9,7 @@ const dropMenu = header.querySelector(".drop-menu");
 const dropMenuAuth = header.querySelector(".drop-menu-auth");
 const dropMenuAuthTitle = header.querySelector(".drop-menu-auth__title");
 const dropMenuAuthProfile = header.querySelector(".drop-menu-auth__profile");
+const dropMenuAuthLogout = header.querySelector(".drop-menu-auth__logout");
 const register = header.querySelector(".drop-menu__register");
 const login = header.querySelector(".drop-menu__login");
 
@@ -57,6 +58,7 @@ const findCardName = libraryCardSearchForm.querySelector("#reader-name");
 const findCardNumber = libraryCardSearchForm.querySelector("#card-number");
 const findCardInput = libraryCardSearchForm.querySelectorAll(".library-card-search__input");
 const userInfo = libraryCardSearchForm.querySelector(".user-info");
+const cardVisits = libraryCardSearchForm.querySelector(".user-info__item--visits");
 
 const bookBuy = document.querySelectorAll(".book-buy");
 
@@ -65,14 +67,24 @@ let isUserLogedIn = false;
 let libLocalStorage = [];
 let newUser = {};
 
-if(!isUserLogedIn) {
-   bookBuy.forEach((el) => {
-       el.addEventListener("click", (evt) =>  {
-         evt.preventDefault();
-         evt._isClickWithInMenu = true;
-         modalLog.classList.add("modal-show");
+function updateBooks() {
+   if(!isUserLogedIn) {
+      bookBuy.forEach((el) => {
+          el.addEventListener("click", (evt) =>  {
+            evt.preventDefault();
+            evt._isClickWithInMenu = true;
+            modalLog.classList.add("modal-show");
+         })
       })
-   });
+   } else {
+      bookBuy.forEach((el) => {
+         el.addEventListener("click", (evt) =>  {
+           evt.preventDefault();
+           evt._isClickWithInMenu = true;
+         //   modalLog.classList.add("modal-show");
+        })
+     })
+   }
 }
 
 function getRandomInt(min, max) {
@@ -112,9 +124,25 @@ function hideLibraryCard() {
    findCardNumber.disabled = false;
 }
 
-function updateDLCSection() {
-
+function updateDLCSection(user) {
+   cardSearchHeader.textContent = isUserLogedIn ? 'Your Library card' : 'Find your Library card';
+   cardGetHeader.textContent = isUserLogedIn ? 'Visit your profile' : 'Get a reader card';
+   cardGetText.textContent = isUserLogedIn ? `With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.` : 'You will be able to see a reader card after logging into account or you can register a new account';
+   getCardReg.classList.toggle("visually-hidden");
+   getCardLog.classList.toggle("visually-hidden");
+   getCardProf.classList.toggle("visually-hidden");
+   findCardName.value = isUserLogedIn ? user.name : "";
+   findCardNumber.value = isUserLogedIn ? user.cardNumber : "";
+   isUserLogedIn ? showLibraryCard() : hideLibraryCard();
 }
+
+function logout() {
+   isUserLogedIn = false;
+   profileButton.classList.toggle("visually-hidden");
+   userProfile.classList.toggle("visually-hidden");
+   dropMenuAuth.classList.toggle("drop-toggle");
+   updateDLCSection();
+};
 
 // Main menu
 
@@ -223,6 +251,10 @@ modalLogToModalReg.addEventListener("click", (evt) => {
    modalReg.classList.add("modal-show");
 });
 
+// Logout
+
+dropMenuAuthLogout.addEventListener("click", () => logout());
+
 // Modal user profile 
 
 dropMenuAuthProfile.addEventListener("click", (evt) => {
@@ -247,6 +279,7 @@ modalProfCopy.addEventListener("click", () => {
       .catch(() => {});
 });
 
+updateBooks();
 
 // New user register submit
 
@@ -254,7 +287,7 @@ registerForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    let cardNumber = getRandomInt(10000000000,59999999999).toString(16).toUpperCase();
 
-   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber, visits: 1};
+   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber, visits: 1, hasLibraryCard: false, books: []};
 
    getUsersData();
    updateUsersData(newUser);
@@ -293,18 +326,9 @@ loginForm.addEventListener("submit", (evt) => {
       modalProfName.textContent = `${currentUser.name} ${currentUser.lastname}`;
       modalProfCardNumber.textContent = `${currentUser.cardNumber}`;
       modalProfVisits.textContent = `${currentUser.visits}`;
+      cardVisits.textContent = `${currentUser.visits}`;
       
-      cardSearchHeader.textContent = 'Your Library card';
-      cardGetHeader.textContent = 'Visit your profile';
-      cardGetText.textContent = `With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.`;
-      getCardReg.classList.add("visually-hidden");
-      getCardLog.classList.add("visually-hidden");
-      getCardProf.classList.remove("visually-hidden");
-      findCardName.value = currentUser.name;
-      findCardNumber.value = currentUser.cardNumber;
-      showLibraryCard();
-
-       
+      updateDLCSection(currentUser);   
 
    } else {
       loginName.classList.add("modal-invalid");
