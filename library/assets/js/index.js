@@ -8,6 +8,7 @@ const profileButton = header.querySelector(".profile-button");
 const dropMenu = header.querySelector(".drop-menu");
 const dropMenuAuth = header.querySelector(".drop-menu-auth");
 const dropMenuAuthTitle = header.querySelector(".drop-menu-auth__title");
+const dropMenuAuthProfile = header.querySelector(".drop-menu-auth__profile");
 const register = header.querySelector(".drop-menu__register");
 const login = header.querySelector(".drop-menu__login");
 
@@ -25,8 +26,6 @@ const regLastName = modalReg.querySelector("#register-last-name");
 const regEmail = modalReg.querySelector("#register-email");
 const regPassword = modalReg.querySelector("#register-password");
 
-const userProfile = header.querySelector(".profile-user");
-
 const modalLog = document.querySelector(".modal-login");
 const modalLogContainer = modalLog.querySelector(".modal-login__wrapper");
 const modalLogClose = modalLog.querySelector(".modal-login__close");
@@ -35,6 +34,15 @@ const loginForm = modalLog.querySelector(".modal-login__form");
 const loginName = modalLog.querySelector("#login-name");
 const loginPass = modalLog.querySelector("#login-password");
 const loginBtn = modalLog.querySelector(".modal-login__btn");
+
+const userProfile = header.querySelector(".profile-user");
+const modalProf = document.querySelector(".modal-myprofile");
+const modalProfContainer = modalProf.querySelector(".modal-myprofile__wrapper");
+const modalProfClose = modalProf.querySelector(".modal-myprofile__close");
+const modalProfLogo = modalProf.querySelector(".modal-myprofile__logo");
+const modalProfName = modalProf.querySelector(".modal-myprofile__name");
+const modalProfCardNumber = modalProf.querySelector(".modal-myprofile__card-number");
+const modalProfCopy = modalProf.querySelector(".modal-myprofile__copy");
 
 const libraryCardSearchForm = document.querySelector(".library-card-search__form");
 const checkCard = libraryCardSearchForm.querySelector(".form-search-btn");
@@ -64,6 +72,27 @@ if(!isUserLogedIn) {
 
 function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+//LocalStorage get users data 
+
+function getUsersData() {
+   try {
+      let currentStorage = localStorage.getItem('users');
+      
+      if (!!currentStorage) libLocalStorage = JSON.parse(currentStorage);
+   } catch(err) {
+      isStorageSupport = false;
+   }
+};
+
+//LocalStorage update
+
+function updateUsersData(obj) {
+
+   libLocalStorage.push(obj);
+   libLocalStorage = [...new Set(libLocalStorage)];
+   localStorage.setItem('users', JSON.stringify(libLocalStorage));
 }
 
 // Main menu
@@ -96,6 +125,7 @@ dropMenu.addEventListener("click", isClickWidthInMenuHandler);
 dropMenuAuth.addEventListener("click", isClickWidthInMenuHandler);
 modalRegContainer.addEventListener("click", isClickWidthInMenuHandler);
 modalLogContainer.addEventListener("click", isClickWidthInMenuHandler);
+modalProfContainer.addEventListener("click", isClickWidthInMenuHandler);
 
 
 document.body.addEventListener("click", (evt) => {
@@ -104,6 +134,7 @@ document.body.addEventListener("click", (evt) => {
    dropMenu.classList.remove("drop-toggle");
    modalReg.classList.remove("modal-show");
    modalLog.classList.remove("modal-show");
+   modalProf.classList.remove("modal-show");
    dropMenuAuth.classList.remove("drop-toggle");
 });
 
@@ -171,6 +202,25 @@ modalLogToModalReg.addEventListener("click", (evt) => {
    modalReg.classList.add("modal-show");
 });
 
+// Modal user profile 
+
+dropMenuAuthProfile.addEventListener("click", (evt) => {
+   evt.preventDefault();
+   dropMenuAuth.classList.remove("drop-toggle");
+   modalProf.classList.add("modal-show");
+});
+
+modalProfClose.addEventListener("click", () => {
+   modalProf.classList.remove("modal-show");
+});
+
+modalProfCopy.addEventListener("click", () => {
+   navigator.clipboard
+      .writeText(modalProfCardNumber.textContent)
+      .then(() => {})
+      .catch(() => {});
+});
+
 
 // New user register submit
 
@@ -178,24 +228,16 @@ registerForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    let cardNumber = getRandomInt(10000000000,59999999999).toString(16).toUpperCase();
 
-   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber};
-   isUserLogedIn = true;
+   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber, visits: 1};
 
-   try {
-      let currentStorage = localStorage.getItem('users');
-      
-      if (!!currentStorage) libLocalStorage = JSON.parse(currentStorage);
-   } catch(err) {
-      isStorageSupport = false;
-   }
-   libLocalStorage.push(newUser);
-   localStorage.setItem('users', JSON.stringify(libLocalStorage));
+   getUsersData();
+   updateUsersData(newUser);
 
    modalReg.classList.remove("modal-show");
    profileButton.classList.add("visually-hidden");
    userProfile.textContent = `${newUser.name[0].toUpperCase()}${newUser.lastname[0].toUpperCase()}`;
    userProfile.title = `${newUser.name} ${newUser.lastname}`;
-   dropMenuAuthTitle.textContent = `${currentUser[0].cardNumber}`;
+   dropMenuAuthTitle.textContent = `${newUser.cardNumber}`;
    userProfile.classList.remove("visually-hidden");
    isUserLogedIn = true;
 });
@@ -205,24 +247,27 @@ registerForm.addEventListener("submit", (evt) => {
 loginForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
 
-   try {
-      let currentStorage = localStorage.getItem('users');
-   
-      if (!!currentStorage) libLocalStorage = JSON.parse(currentStorage);
-   } catch(err) {
-      isStorageSupport = false;
-   }
+   getUsersData();
 
    let currentUser = libLocalStorage.filter((el) => 
                (el.mail === loginName.value || el.cardNumber === loginName.value) && el.pass === loginPass.value);
    if(!!currentUser.length) {
+      currentUser = currentUser[0];
+      currentUser.visits++;
+      updateUsersData(currentUser);
       isUserLogedIn = true;
       modalLog.classList.remove("modal-show");
       profileButton.classList.add("visually-hidden");
-      userProfile.textContent = `${currentUser[0].name[0].toUpperCase()}${currentUser[0].lastname[0].toUpperCase()}`;
-      userProfile.title = `${currentUser[0].name} ${currentUser[0].lastname}`;
-      dropMenuAuthTitle.textContent = `${currentUser[0].cardNumber}`;
-      userProfile.classList.remove("visually-hidden"); 
+      userProfile.classList.remove("visually-hidden");
+      userProfile.textContent = `${currentUser.name[0].toUpperCase()}${currentUser.lastname[0].toUpperCase()}`;
+      userProfile.title = `${currentUser.name} ${currentUser.lastname}`;
+      dropMenuAuthTitle.textContent = `${currentUser.cardNumber}`;
+
+      modalProfLogo.textContent = `${currentUser.name[0].toUpperCase()}${currentUser.lastname[0].toUpperCase()}`;
+      modalProfName.textContent = `${currentUser.name} ${currentUser.lastname}`;
+      modalProfCardNumber.textContent = `${currentUser.cardNumber}`;
+       
+
    } else {
       loginName.classList.add("modal-invalid");
       loginPass.classList.add("modal-invalid");

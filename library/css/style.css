@@ -1064,6 +1064,12 @@ span.book-author {
     background-color: transparent;
     transition: all 0.3s;
 }
+
+.modal-myprofile__close {
+    top: 17px;
+    right: 17px;
+}
+
 .modal-register__close::before,
 .modal-register__close::after,
 .modal-login__close::before,
