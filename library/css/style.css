@@ -570,7 +570,7 @@ span.book-author {
     line-height: normal;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.9s;
+    transition: background-color 0.9s;
 }
 
 .btn:not(:disabled):hover {

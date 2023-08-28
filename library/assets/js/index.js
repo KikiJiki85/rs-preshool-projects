@@ -19,6 +19,7 @@ const modalRegToModalLog = modalReg.querySelector(".modal-register__login");
 
 const getCardReg = document.querySelector(".library-card-get__register");
 const getCardLog = document.querySelector(".library-card-get__login");
+const getCardProf = document.querySelector(".library-card-get__profile");
 
 const registerForm = modalReg.querySelector(".modal-register__form");
 const regFirstName = modalReg.querySelector("#register-first-name");
@@ -42,9 +43,15 @@ const modalProfClose = modalProf.querySelector(".modal-myprofile__close");
 const modalProfLogo = modalProf.querySelector(".modal-myprofile__logo");
 const modalProfName = modalProf.querySelector(".modal-myprofile__name");
 const modalProfCardNumber = modalProf.querySelector(".modal-myprofile__card-number");
+const modalProfVisits = modalProf.querySelector(".user-info__item--visits");
 const modalProfCopy = modalProf.querySelector(".modal-myprofile__copy");
 
-const libraryCardSearchForm = document.querySelector(".library-card-search__form");
+const digitalLibraryCardSection = document.querySelector(".library-card");
+const cardSearchHeader = digitalLibraryCardSection.querySelector(".library-card-search__header");
+const cardGetHeader = digitalLibraryCardSection.querySelector(".library-card-get__header");
+const cardGetText = digitalLibraryCardSection.querySelector(".library-card-get__text");
+
+const libraryCardSearchForm = digitalLibraryCardSection.querySelector(".library-card-search__form");
 const checkCard = libraryCardSearchForm.querySelector(".form-search-btn");
 const findCardName = libraryCardSearchForm.querySelector("#reader-name");
 const findCardNumber = libraryCardSearchForm.querySelector("#card-number");
@@ -68,13 +75,9 @@ if(!isUserLogedIn) {
    });
 }
 
-//Random int function
-
 function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min;
 }
-
-//LocalStorage get users data 
 
 function getUsersData() {
    try {
@@ -86,13 +89,31 @@ function getUsersData() {
    }
 };
 
-//LocalStorage update
-
 function updateUsersData(obj) {
 
    libLocalStorage.push(obj);
    libLocalStorage = [...new Set(libLocalStorage)];
    localStorage.setItem('users', JSON.stringify(libLocalStorage));
+}
+
+function showLibraryCard() {
+   checkCard.style = "display:none";
+   userInfo.classList.remove("visually-hidden");
+   findCardName.disabled = true;
+   findCardNumber.disabled = true;
+}
+
+function hideLibraryCard() {
+   checkCard.style = "";
+   userInfo.classList.add("visually-hidden");
+   findCardName.value = "";
+   findCardNumber.value = "";
+   findCardName.disabled = false;
+   findCardNumber.disabled = false;
+}
+
+function updateDLCSection() {
+
 }
 
 // Main menu
@@ -210,6 +231,11 @@ dropMenuAuthProfile.addEventListener("click", (evt) => {
    modalProf.classList.add("modal-show");
 });
 
+getCardProf.addEventListener("click", (evt) => {
+   evt._isClickWithInMenu = true;
+   modalProf.classList.add("modal-show");
+});
+
 modalProfClose.addEventListener("click", () => {
    modalProf.classList.remove("modal-show");
 });
@@ -242,7 +268,7 @@ registerForm.addEventListener("submit", (evt) => {
    isUserLogedIn = true;
 });
 
-// New user login 
+// User login 
 
 loginForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
@@ -266,6 +292,18 @@ loginForm.addEventListener("submit", (evt) => {
       modalProfLogo.textContent = `${currentUser.name[0].toUpperCase()}${currentUser.lastname[0].toUpperCase()}`;
       modalProfName.textContent = `${currentUser.name} ${currentUser.lastname}`;
       modalProfCardNumber.textContent = `${currentUser.cardNumber}`;
+      modalProfVisits.textContent = `${currentUser.visits}`;
+      
+      cardSearchHeader.textContent = 'Your Library card';
+      cardGetHeader.textContent = 'Visit your profile';
+      cardGetText.textContent = `With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.`;
+      getCardReg.classList.add("visually-hidden");
+      getCardLog.classList.add("visually-hidden");
+      getCardProf.classList.remove("visually-hidden");
+      findCardName.value = currentUser.name;
+      findCardNumber.value = currentUser.cardNumber;
+      showLibraryCard();
+
        
 
    } else {
@@ -285,23 +323,12 @@ loginForm.addEventListener("submit", (evt) => {
 
 libraryCardSearchForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
-   let usersData = JSON.parse(localStorage.getItem("users"));
-   let found = usersData.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value);
+   getUsersData();
+   let found = libLocalStorage.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value);
 
    if(!!found.length) {
-      checkCard.style = "display:none";
-      userInfo.classList.remove("visually-hidden");
-      findCardName.disabled = true;
-      findCardNumber.disabled = true;
-      setTimeout(() => {
-         checkCard.style = "";
-         userInfo.classList.add("visually-hidden");
-         findCardName.value = "";
-         findCardNumber.value = "";
-         findCardName.disabled = false;
-         findCardNumber.disabled = false;
-      }, 10000);
-      
+      showLibraryCard();
+      setTimeout(() => hideLibraryCard(), 10000);
    } else {
       console.log('no such user');
       findCardInput.forEach(el => el.classList.add("modal-invalid"));
