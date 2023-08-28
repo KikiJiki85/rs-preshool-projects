@@ -912,7 +912,8 @@ span.book-author {
 }
 
 .modal-register,
-.modal-login {
+.modal-login,
+.modal-myprofile {
     position: fixed;
     top: 0;
     left: 0;
@@ -939,6 +940,15 @@ span.book-author {
 
 .modal-login__wrapper {
     height: 262px;
+}
+
+.modal-myprofile__wrapper {
+    height: 400px;
+    background-color: #ffffff;
+    display: flex;
+    width: 600px;
+    position: relative;
+
 }
 
 .modal-register__wrapper,
@@ -1041,7 +1051,8 @@ span.book-author {
 }
 
 .modal-register__close,
-.modal-login__close {
+.modal-login__close,
+.modal-myprofile__close {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -1056,7 +1067,9 @@ span.book-author {
 .modal-register__close::before,
 .modal-register__close::after,
 .modal-login__close::before,
-.modal-login__close::after {
+.modal-login__close::after,
+.modal-myprofile__close::before,
+.modal-myprofile__close::after {
     content: '';
     position: absolute;
     width: 20px;
@@ -1067,18 +1080,128 @@ span.book-author {
 }
 
 .modal-register__close::before,
-.modal-login__close::before {
+.modal-login__close::before,
+.modal-myprofile__close::before {
     transform: translate(-50%, -50%) rotate(135deg);
 }
 
 .modal-register__close::after,
-.modal-login__close::after {
+.modal-login__close::after,
+.modal-myprofile__close::after {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .modal-register__close:hover,
-.modal-login__close:hover {
+.modal-login__close:hover,
+.modal-myprofile__close:hover {
     background-color: #BB945F;
+}
+
+.modal-myprofile__username {
+    background-color: #0C0C0E;
+    width: 170px;
+    height: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-myprofile__logo {
+    padding: 30px 27px;
+    background-color: #ffffff;
+    color: #BB945F;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: capitalize;
+}
+
+.modal-myprofile__name {
+    padding: 5px 15px;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: capitalize;
+}
+
+.modal-myprofile__description {
+    padding: 38px 0 40px 20px;
+}
+
+.modal-myprofile__header {
+    color: #000;
+    font-family: Forum;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 20px; 
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.modal-myprofile__info {
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.modal-myprofile__item {
+    gap: 10px;
+}
+
+span.modal-myprofile__user-stats {
+    font-size: 20px;
+    letter-spacing: 0.4px;
+}
+
+.modal-myprofile__subheader {
+    color: #0C0C0E;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 31px;
+}
+
+.modal-myprofile__books {
+    color: #000;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    padding-left: 31px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    height: 55px;
+    margin-bottom: 0;
+}
+
+.modal-myprofile__card {
+    margin-top: 25px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.modal-myprofile__card-number {
+    color: #BB945F;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.modal-myprofile__copy {
+    cursor: pointer;
 }
 
 @media (max-width: 1024px) {

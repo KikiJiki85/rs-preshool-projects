@@ -465,28 +465,31 @@
             <span class="modal-login__close"></span>
         </div>
     </section>
-    <section class="modal-myprofile">
+    <section class="modal-myprofile modal-show">
         <div class="modal-myprofile__wrapper">
-            <div class="modal-myprofile__username"></div>
+            <div class="modal-myprofile__username">
+                <span class="modal-myprofile__logo">JD</span>
+                <span class="modal-myprofile__name">John Doe</span>
+            </div>
             <div class="modal-myprofile__description">
                 <h2 class="modal-myprofile__header">My profile</h2>
                 <ul class="modal-myprofile__info user-info">
-                    <li class="user-info__item">
-                        <span>Visits</span>
+                    <li class="modal-myprofile__item user-info__item">
+                        <span class="modal-myprofile__user-stats">Visits</span>
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
                         </svg>
                         <span class="user-info__item--visits">23</span>
                     </li>
-                    <li class="user-info__item">
-                        <span>Bonuses</span>
+                    <li class="modal-myprofile__item  user-info__item">
+                        <span class="modal-myprofile__user-stats">Bonuses</span>
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
                         </svg>
                         <span class="user-info__item--bonuses">1240</span>
                     </li>
-                    <li class="user-info__item">
-                        <span>Books</span>
+                    <li class="modal-myprofile__item  user-info__item">
+                        <span class="modal-myprofile__user-stats">Books</span>
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="20" height="21" fill="#BB945F"/>
                             <rect x="2" width="1" height="19" fill="#826844"/>
@@ -500,8 +503,18 @@
                     <li class="modal-myprofile__book">The Last Queen, Clive Irving</li>
                     <li class="modal-myprofile__book">Dominicana, Angie Cruz</li>
                 </ul>
-                <p class="modal-myprofile__card">Card number <strong>F00234030</strong><span>copy</span></p>
+                <p class="modal-myprofile__card">
+                    Card number 
+                    <strong class="modal-myprofile__card-number">
+                        F00234030
+                    </strong>
+                    <svg class="modal-myprofile__copy" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.46826" y="0.25" width="10.5917" height="9.5" rx="0.75" stroke="black" stroke-width="0.5"/>
+                        <rect x="0.25" y="2.25" width="10.5917" height="9.5" rx="0.75" fill="white" stroke="black" stroke-width="0.5"/>
+                    </svg>
+                </p>
             </div>
+            <span class="modal-myprofile__close"></span>
         </div>
     </section>
     <script src="assets/js/index.js"></script>
