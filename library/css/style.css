@@ -952,7 +952,7 @@ span.book-author {
 }
 
 .modal-buycard__wrapper {
-    width: 650px;
+    width: 640px;
     height: 540px;
     background-color: #ffffff;
     display: flex;
@@ -999,10 +999,12 @@ span.book-author {
 }
 
 .modal-register__input,
-.modal-login__input {
+.modal-login__input,
+.modal-buycard__input {
     height: 20px;
     border: none;
     font-size: 15px;
+    letter-spacing: 0.3px;
     line-height: normal;
     padding: 2px 5px;
     outline: 1px solid #BB945F;
@@ -1010,15 +1012,16 @@ span.book-author {
     transition: all 0.3s;
 }
 
-
 .modal-register__input:focus,
-.modal-login__input:focus {
+.modal-login__input:focus,
+.modal-buycard__input:focus {
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid #55c57a;
 }
 
 .modal-register__input:focus:invalid,
-.modal-login__input:focus:invalid {
+.modal-login__input:focus:invalid,
+.modal-buycard__input:focus:invalid {
     border-bottom: 2px solid #ff7730;
 }
 
@@ -1061,7 +1064,8 @@ span.book-author {
 
 .modal-register__close,
 .modal-login__close,
-.modal-myprofile__close {
+.modal-myprofile__close,
+.modal-buycard__close {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -1074,7 +1078,8 @@ span.book-author {
     transition: all 0.3s;
 }
 
-.modal-myprofile__close {
+.modal-myprofile__close,
+.modal-buycard__close {
     top: 17px;
     right: 17px;
 }
@@ -1084,7 +1089,9 @@ span.book-author {
 .modal-login__close::before,
 .modal-login__close::after,
 .modal-myprofile__close::before,
-.modal-myprofile__close::after {
+.modal-myprofile__close::after,
+.modal-buycard__close::before,
+.modal-buycard__close::after {
     content: '';
     position: absolute;
     width: 20px;
@@ -1094,21 +1101,29 @@ span.book-author {
     left: 50%;
 }
 
+.modal-buycard__close::before,
+.modal-buycard__close::after {
+    background-color: #ffffff;
+}
+
 .modal-register__close::before,
 .modal-login__close::before,
-.modal-myprofile__close::before {
+.modal-myprofile__close::before,
+.modal-buycard__close::before{
     transform: translate(-50%, -50%) rotate(135deg);
 }
 
 .modal-register__close::after,
 .modal-login__close::after,
-.modal-myprofile__close::after {
+.modal-myprofile__close::after,
+.modal-buycard__close::after {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .modal-register__close:hover,
 .modal-login__close:hover,
-.modal-myprofile__close:hover {
+.modal-myprofile__close:hover,
+.modal-buycard__close:hover {
     background-color: #BB945F;
 }
 
@@ -1244,6 +1259,8 @@ span.modal-myprofile__user-stats {
 .modal-buycard__form {
     display: flex;
     flex-direction: column;
+    min-width: 200px;
+    gap: 10px;
 }
 
 .modal-buycard__label {
@@ -1254,9 +1271,41 @@ span.modal-myprofile__user-stats {
     letter-spacing: 0.3px;
 }
 
-.modal-buycard__input {
-    border: 1px solid #BB945F;
-    height: 20px;
+.modal-buycard__exp-fieldset {
+    display: flex;
+    gap: 10px;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-buycard__input--exp,
+.modal-buycard__input--cvc {
+    width: 45px;
+}
+
+.modal-buycard__input--cvc {
+    margin-bottom: 10px;
+}
+
+.modal-buycard__price-wrapper {
+    display: flex;
+    gap: 25px;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
+.modal-buycard__button:disabled {
+    cursor: default;
+    background-color: #EBEBE4;
+}
+
+.modal-buycard__price {
+    color: #0C0C0E;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .modal-buycard__text {
@@ -1264,6 +1313,7 @@ span.modal-myprofile__user-stats {
     font-size: 15px;
     line-height: 20px;
     letter-spacing: 2px;
+    margin-top: 0;
 }
 
 @media (max-width: 1024px) {

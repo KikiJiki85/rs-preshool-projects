@@ -45,7 +45,14 @@ const modalProfLogo = modalProf.querySelector(".modal-myprofile__logo");
 const modalProfName = modalProf.querySelector(".modal-myprofile__name");
 const modalProfCardNumber = modalProf.querySelector(".modal-myprofile__card-number");
 const modalProfVisits = modalProf.querySelector(".user-info__item--visits");
+const modalProfBooks = modalProf.querySelector(".user-info__item--books");
 const modalProfCopy = modalProf.querySelector(".modal-myprofile__copy");
+
+const modalBuyACard = document.querySelector(".modal-buycard");
+const modalBuyACardContainer = modalBuyACard.querySelector(".modal-buycard__wrapper");
+const modalBuyACardForm = modalBuyACard.querySelector(".modal-buycard__form");
+const modalBuyACardClose = modalBuyACard.querySelector(".modal-buycard__close");
+const modalBuyACardButton = modalBuyACard.querySelector(".modal-buycard__button");
 
 const digitalLibraryCardSection = document.querySelector(".library-card");
 const cardSearchHeader = digitalLibraryCardSection.querySelector(".library-card-search__header");
@@ -59,31 +66,71 @@ const findCardNumber = libraryCardSearchForm.querySelector("#card-number");
 const findCardInput = libraryCardSearchForm.querySelectorAll(".library-card-search__input");
 const userInfo = libraryCardSearchForm.querySelector(".user-info");
 const cardVisits = libraryCardSearchForm.querySelector(".user-info__item--visits");
+const cardBooks = libraryCardSearchForm.querySelector(".user-info__item--books");
 
 const bookBuy = document.querySelectorAll(".book-buy");
+const booksList = document.querySelectorAll(".fav-filter-item");
 
 let isStorageSupport = true;
 let isUserLogedIn = false;
 let libLocalStorage = [];
 let newUser = {};
+let currentUser = {};
+
+updateBooks();
+
+function modalLoginBooksHandler(evt) {
+   evt.preventDefault();
+   evt._isClickWithInMenu = true;
+   modalLog.classList.toggle("modal-show");
+}
+
+function modalLoginNoLibCardHandler(evt) {
+   evt.preventDefault();
+   evt._isClickWithInMenu = true;
+   modalBuyACard.classList.toggle("modal-show");
+}
+
+function updateBookOwnship(element) {
+   element.classList.remove("book-buy");
+   element.classList.add("book-own");
+   element.textContent = 'Own';
+   element.disabled = true;
+}
+
+function modalLoginHasLibCardHandler(evt) {
+   evt.preventDefault();
+   evt._isClickWithInMenu = true;
+   updateBookOwnship(evt.target);
+   currentUser.books.push(evt.target.closest('.fav-filter-item')
+                                    .querySelector(".fav-filter-item__header")
+                                    .textContent.split('by'));
+   updateUsersData(currentUser);
+   updateBooks();
+}
 
 function updateBooks() {
    if(!isUserLogedIn) {
       bookBuy.forEach((el) => {
-          el.addEventListener("click", (evt) =>  {
-            evt.preventDefault();
-            evt._isClickWithInMenu = true;
-            modalLog.classList.add("modal-show");
-         })
+          el.addEventListener("click", modalLoginBooksHandler);
+      })
+   } else if (isUserLogedIn && !currentUser.hasLibraryCard) {
+      bookBuy.forEach((el) => {
+         el.removeEventListener("click", modalLoginBooksHandler);
+         el.addEventListener("click", modalLoginNoLibCardHandler);
       })
    } else {
+      booksList.forEach(el => {
+         for(let i = 0; i < currentUser.books.length; i++) {
+            let bookOwn = !el.querySelector(".fav-filter-item__header").textContent.indexOf(currentUser.books[i][0]);
+           if (bookOwn && !!el.querySelector(".book-buy")) updateBookOwnship(el.querySelector(".book-buy"));
+         }
+      });
       bookBuy.forEach((el) => {
-         el.addEventListener("click", (evt) =>  {
-           evt.preventDefault();
-           evt._isClickWithInMenu = true;
-         //   modalLog.classList.add("modal-show");
-        })
-     })
+         el.removeEventListener("click", modalLoginBooksHandler);
+         el.removeEventListener("click", modalLoginNoLibCardHandler);
+         el.addEventListener("click", modalLoginHasLibCardHandler);
+      })
    }
 }
 
@@ -113,6 +160,8 @@ function showLibraryCard() {
    userInfo.classList.remove("visually-hidden");
    findCardName.disabled = true;
    findCardNumber.disabled = true;
+   cardVisits.textContent = `${currentUser.visits}`;
+   cardBooks.textContent = `${currentUser.books.length}`;
 }
 
 function hideLibraryCard() {
@@ -175,6 +224,7 @@ dropMenuAuth.addEventListener("click", isClickWidthInMenuHandler);
 modalRegContainer.addEventListener("click", isClickWidthInMenuHandler);
 modalLogContainer.addEventListener("click", isClickWidthInMenuHandler);
 modalProfContainer.addEventListener("click", isClickWidthInMenuHandler);
+modalBuyACardContainer.addEventListener("click", isClickWidthInMenuHandler);
 
 
 document.body.addEventListener("click", (evt) => {
@@ -185,6 +235,7 @@ document.body.addEventListener("click", (evt) => {
    modalLog.classList.remove("modal-show");
    modalProf.classList.remove("modal-show");
    dropMenuAuth.classList.remove("drop-toggle");
+   modalBuyACard.classList.remove("modal-show");
 });
 
 //Profile drop menu
@@ -279,7 +330,20 @@ modalProfCopy.addEventListener("click", () => {
       .catch(() => {});
 });
 
-updateBooks();
+// Modal buy a card
+
+modalBuyACardClose.addEventListener("click", (evt) => {
+   evt._isClickWithInMenu = true;
+   modalBuyACard.classList.toggle("modal-show");
+});
+
+modalBuyACardForm.addEventListener("submit", (evt) => {
+   evt.preventDefault();
+   modalBuyACard.classList.remove("modal-show");
+   currentUser.hasLibraryCard = true;
+   updateUsersData(currentUser);
+});
+
 
 // New user register submit
 
@@ -287,18 +351,19 @@ registerForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    let cardNumber = getRandomInt(10000000000,59999999999).toString(16).toUpperCase();
 
-   newUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber, visits: 1, hasLibraryCard: false, books: []};
+   currentUser = { name: regFirstName.value, lastname: regLastName.value, mail: regEmail.value, pass: regPassword.value, cardNumber, visits: 1, hasLibraryCard: false, books: []};
 
    getUsersData();
-   updateUsersData(newUser);
+   updateUsersData(currentUser);
 
    modalReg.classList.remove("modal-show");
    profileButton.classList.add("visually-hidden");
-   userProfile.textContent = `${newUser.name[0].toUpperCase()}${newUser.lastname[0].toUpperCase()}`;
-   userProfile.title = `${newUser.name} ${newUser.lastname}`;
-   dropMenuAuthTitle.textContent = `${newUser.cardNumber}`;
+   userProfile.textContent = `${currentUser.name[0].toUpperCase()}${currentUser.lastname[0].toUpperCase()}`;
+   userProfile.title = `${currentUser.name} ${currentUser.lastname}`;
+   dropMenuAuthTitle.textContent = `${currentUser.cardNumber}`;
    userProfile.classList.remove("visually-hidden");
    isUserLogedIn = true;
+   updateBooks();
 });
 
 // User login 
@@ -308,10 +373,9 @@ loginForm.addEventListener("submit", (evt) => {
 
    getUsersData();
 
-   let currentUser = libLocalStorage.filter((el) => 
-               (el.mail === loginName.value || el.cardNumber === loginName.value) && el.pass === loginPass.value);
-   if(!!currentUser.length) {
-      currentUser = currentUser[0];
+   currentUser = libLocalStorage.filter((el) => 
+                  (el.mail === loginName.value || el.cardNumber === loginName.value) && el.pass === loginPass.value)[0];
+   if(!!Object.keys(currentUser).length) {
       currentUser.visits++;
       updateUsersData(currentUser);
       isUserLogedIn = true;
@@ -326,8 +390,11 @@ loginForm.addEventListener("submit", (evt) => {
       modalProfName.textContent = `${currentUser.name} ${currentUser.lastname}`;
       modalProfCardNumber.textContent = `${currentUser.cardNumber}`;
       modalProfVisits.textContent = `${currentUser.visits}`;
+      modalProfBooks.textContent = `${currentUser.books.length}`;
       cardVisits.textContent = `${currentUser.visits}`;
+      cardBooks.textContent = `${currentUser.books.length}`;
       
+      updateBooks();
       updateDLCSection(currentUser);   
 
    } else {
@@ -348,9 +415,9 @@ loginForm.addEventListener("submit", (evt) => {
 libraryCardSearchForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    getUsersData();
-   let found = libLocalStorage.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value);
-
-   if(!!found.length) {
+   currentUser = libLocalStorage.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value)[0];
+   
+   if(!!Object.keys(currentUser).length) {
       showLibraryCard();
       setTimeout(() => hideLibraryCard(), 10000);
    } else {
@@ -366,4 +433,5 @@ libraryCardSearchForm.addEventListener("submit", (evt) => {
    }
    
 });
+
 
