@@ -77,6 +77,7 @@ let isUserLogedIn = false;
 let libLocalStorage = [];
 let newUser = {};
 let currentUser = {};
+let singleBookAdd = false;
 
 updateBooks();
 
@@ -108,6 +109,7 @@ function modalLoginHasLibCardHandler(evt) {
                                     .textContent.split('by'));
    updateUsersData(currentUser);
    updateBooks();
+   singleBookAdd = true;
    updateProfile();
 }
 
@@ -193,13 +195,21 @@ function updateProfile() {
    modalProfBooks.textContent = `${currentUser.books.length}`;
    cardVisits.textContent = `${currentUser.visits}`;
    cardBooks.textContent = `${currentUser.books.length}`;
-   currentUser.books.forEach((element) => {
+   if(!singleBookAdd) {
+      currentUser.books.forEach((element) => {
+         const fragment = document.createDocumentFragment();
+         const li = fragment.appendChild(document.createElement("li"));
+         li.classList.add("modal-myprofile__book");
+         li.textContent = `${element[0]}, ${element[1]}`;
+         modalProfBooksList.appendChild(fragment);
+      });
+   } else {
       const fragment = document.createDocumentFragment();
       const li = fragment.appendChild(document.createElement("li"));
       li.classList.add("modal-myprofile__book");
-      li.textContent = `${element[0]}, ${element[1]}`;
+      li.textContent = `${currentUser.books[currentUser.books.length - 1][0]}, ${currentUser.books[currentUser.books.length - 1][1]}`;
       modalProfBooksList.appendChild(fragment);
-   });
+   }
 }
 
 function logout() {
@@ -360,6 +370,7 @@ modalBuyACardForm.addEventListener("submit", (evt) => {
    modalBuyACard.classList.remove("modal-show");
    currentUser.hasLibraryCard = true;
    updateUsersData(currentUser);
+   updateBooks();
 });
 
 
