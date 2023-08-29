@@ -46,6 +46,7 @@ const modalProfName = modalProf.querySelector(".modal-myprofile__name");
 const modalProfCardNumber = modalProf.querySelector(".modal-myprofile__card-number");
 const modalProfVisits = modalProf.querySelector(".user-info__item--visits");
 const modalProfBooks = modalProf.querySelector(".user-info__item--books");
+const modalProfBooksList = modalProf.querySelector(".modal-myprofile__books");
 const modalProfCopy = modalProf.querySelector(".modal-myprofile__copy");
 
 const modalBuyACard = document.querySelector(".modal-buycard");
@@ -107,12 +108,14 @@ function modalLoginHasLibCardHandler(evt) {
                                     .textContent.split('by'));
    updateUsersData(currentUser);
    updateBooks();
+   updateProfile();
 }
 
 function updateBooks() {
    if(!isUserLogedIn) {
       bookBuy.forEach((el) => {
           el.addEventListener("click", modalLoginBooksHandler);
+          el.removeEventListener("click", modalLoginNoLibCardHandler);
       })
    } else if (isUserLogedIn && !currentUser.hasLibraryCard) {
       bookBuy.forEach((el) => {
@@ -185,12 +188,27 @@ function updateDLCSection(user) {
    isUserLogedIn ? showLibraryCard() : hideLibraryCard();
 }
 
+function updateProfile() {
+   modalProfVisits.textContent = `${currentUser.visits}`;
+   modalProfBooks.textContent = `${currentUser.books.length}`;
+   cardVisits.textContent = `${currentUser.visits}`;
+   cardBooks.textContent = `${currentUser.books.length}`;
+   currentUser.books.forEach((element) => {
+      const fragment = document.createDocumentFragment();
+      const li = fragment.appendChild(document.createElement("li"));
+      li.classList.add("modal-myprofile__book");
+      li.textContent = `${element[0]}, ${element[1]}`;
+      modalProfBooksList.appendChild(fragment);
+   });
+}
+
 function logout() {
    isUserLogedIn = false;
    profileButton.classList.toggle("visually-hidden");
    userProfile.classList.toggle("visually-hidden");
    dropMenuAuth.classList.toggle("drop-toggle");
    updateDLCSection();
+   updateBooks();
 };
 
 // Main menu
@@ -362,8 +380,15 @@ registerForm.addEventListener("submit", (evt) => {
    userProfile.title = `${currentUser.name} ${currentUser.lastname}`;
    dropMenuAuthTitle.textContent = `${currentUser.cardNumber}`;
    userProfile.classList.remove("visually-hidden");
+
+   modalProfLogo.textContent = `${currentUser.name[0].toUpperCase()}${currentUser.lastname[0].toUpperCase()}`;
+   modalProfName.textContent = `${currentUser.name} ${currentUser.lastname}`;
+   modalProfCardNumber.textContent = `${currentUser.cardNumber}`;
+
    isUserLogedIn = true;
+   updateProfile();
    updateBooks();
+   updateDLCSection(currentUser);
 });
 
 // User login 
@@ -389,11 +414,8 @@ loginForm.addEventListener("submit", (evt) => {
       modalProfLogo.textContent = `${currentUser.name[0].toUpperCase()}${currentUser.lastname[0].toUpperCase()}`;
       modalProfName.textContent = `${currentUser.name} ${currentUser.lastname}`;
       modalProfCardNumber.textContent = `${currentUser.cardNumber}`;
-      modalProfVisits.textContent = `${currentUser.visits}`;
-      modalProfBooks.textContent = `${currentUser.books.length}`;
-      cardVisits.textContent = `${currentUser.visits}`;
-      cardBooks.textContent = `${currentUser.books.length}`;
-      
+
+      updateProfile();
       updateBooks();
       updateDLCSection(currentUser);   
 
@@ -416,7 +438,7 @@ libraryCardSearchForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    getUsersData();
    currentUser = libLocalStorage.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value)[0];
-   
+
    if(!!Object.keys(currentUser).length) {
       showLibraryCard();
       setTimeout(() => hideLibraryCard(), 10000);
