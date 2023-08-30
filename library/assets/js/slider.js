@@ -15,7 +15,7 @@ const stickyStart = fav.offsetTop + favControlMenu.offsetTop;
 const stickyEnd = favFilterEnd.offsetTop - favControlMenu.offsetTop;
 
 function setSticky() {
-    if (window.pageYOffset > stickyStart && window.pageYOffset < stickyEnd) {
+    if (window.scrollY > stickyStart && window.scrollY < stickyEnd) {
         favControlMenu.classList.add('sticky');
     }
      else { 
@@ -35,7 +35,6 @@ favControls.forEach((el,index) => {
     el.addEventListener('click', () => {
         favPosition = (-favSlideWidth) * index;
         setActiveFavSlide(index);
-        
     });
 });
 
@@ -44,7 +43,8 @@ const setActiveFavSlide = (index) => {
     setTimeout(() => {
         favSlides[index].classList.add('fav-active-slide'); 
         favSetPosition();
-    }, 400);
+    }, 425);
+
     favControls.forEach(el => el.disabled = false);
     favControls[index].disabled = true;
 };

@@ -498,6 +498,10 @@ img {
     transition: opacity 0.4s;
 }
 
+.fav-slides-wrapper {
+    overflow: hidden;
+}
+
 .fav-active-slide{
     opacity: 1;
 }
@@ -1451,13 +1455,15 @@ span.modal-myprofile__user-stats {
         margin-bottom: 0;
     }
 
-    .fav-filter-pack {
-        grid-template-columns: 1fr;
+    .fav-filter-item {
+        justify-self: stretch;
     }
-    
-    .fav-slides-wrapper {
-        padding-left: 69px;
-        padding-right: 108px;
+
+    .fav-filter-pack {
+        justify-content: center;
+        grid-template-columns: 551px;
+        padding-right: 40px;
+
     }
 
     .fav-filter-header {
