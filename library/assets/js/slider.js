@@ -43,7 +43,7 @@ const setActiveFavSlide = (index) => {
     setTimeout(() => {
         favSlides[index].classList.add('fav-active-slide'); 
         favSetPosition();
-    }, 425);
+    }, 500);
 
     favControls.forEach(el => el.disabled = false);
     favControls[index].disabled = true;

@@ -410,7 +410,7 @@ loginForm.addEventListener("submit", (evt) => {
    getUsersData();
 
    currentUser = libLocalStorage.filter((el) => 
-                  (el.mail === loginName.value || el.cardNumber === loginName.value) && el.pass === loginPass.value)[0];
+                  (el.mail === loginName.value || el.cardNumber === loginName.value) && el.pass === loginPass.value)[0] || {};
    if(!!Object.keys(currentUser).length) {
       currentUser.visits++;
       updateUsersData(currentUser);
@@ -462,7 +462,13 @@ libraryCardSearchForm.addEventListener("submit", (evt) => {
          findCardNumber.disabled = false;
       },3000);
    }
-   
 });
+
+console.log(`
+1. Этап 1: Пользователь не зарегистрирован +50\n
+2. Этап 2: Пользователь на этапе регистрации +49\n
+3. Этап 3: Пользователь на этапе входа в учётную запись после регистрации. +29\n
+4. Этап 4: Пользователь после входа в учётную запись +76\n
+Итого: 204 балла`);
 
 
