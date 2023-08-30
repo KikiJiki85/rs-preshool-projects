@@ -448,13 +448,11 @@ loginForm.addEventListener("submit", (evt) => {
 libraryCardSearchForm.addEventListener("submit", (evt) => {
    evt.preventDefault();
    getUsersData();
-   currentUser = libLocalStorage.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value)[0];
-
+   currentUser = libLocalStorage.filter((el) => el.name === findCardName.value && el.cardNumber === findCardNumber.value)[0] || {};
    if(!!Object.keys(currentUser).length) {
       showLibraryCard();
       setTimeout(() => hideLibraryCard(), 10000);
    } else {
-      console.log('no such user');
       findCardInput.forEach(el => el.classList.add("modal-invalid"));
       findCardName.disabled = true;
       findCardNumber.disabled = true;
