@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="page" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>audio-player by Vaskin Aleksey</title>
+    <title>The audio-player by Vaskin Aleksey</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="container">
+        <main class="music-app">
+            <h1 class="music-app__header">Music app</h1>
+            <div class="music-app__content">
+                <div class="music-app__cover">
+                    <img src="./assets/img/lemonade.png" alt="cover image">
+                </div>
+                <div class="music-app__current-song">Beyonce, dont hurt yourself</div>
+                <div class="music-app__progress__container">
+                    <div class="music-app__progress"></div>
+                </div>
+                <div class="music-app__controls">
+                    <div class="btn prev"><img src="./assets/img/prev.png" alt="prev icon"></div>
+                    <div class="btn play"><img src="./assets/img/play.png" alt="play icon"></div>
+                    <div class="btn next"><img src="./assets/img/next.png" alt="next icon"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="./assets/js/index.js"></script>
 </body>
 </html>
