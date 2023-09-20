@@ -9,7 +9,7 @@ const currentSong = player.querySelector('.music-app__current-song');
 const coverImg = player.querySelector('.music-app__cover-img');
 const imgStatus = player.querySelector('.music-app__status');
 
-const songs = [`Beyonce - Don't Hurt Yourself`,`Dua Lipa - Don't Start Now`];
+const songs = [`Beyonce - Don't Hurt Yourself`,`Dua Lipa - Don't Start Now`,`Slipknot - Vermilion, Pt.2`];
 
 let songIndex = 0;
 let isPlaying = false;
@@ -55,9 +55,16 @@ function playNext() {
     playSong();
 }
 
+function updateProgress(e) {
+    const {duration, currentTime} = e.srcElement;
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`;
+}
+
 playBtn.addEventListener('click', playSong);
 prevBtn.addEventListener('click', playPrev);
 nextBtn.addEventListener('click', playNext);
+track.addEventListener('timeupdate', updateProgress);
 
 loadSong(songs[songIndex]);
 

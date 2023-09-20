@@ -14,7 +14,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 20px;
     }
 
     &__header {
@@ -33,6 +33,10 @@
         }
     }
 
+    &__current-song {
+        font-size: 18px;
+    }
+
     &__progress-container {
         background-color: #e4e9ed;
         border-radius: 5px;
@@ -47,19 +51,20 @@
         background-color: #2b3c5b;
         border-radius: 3px;
         height: 6px;
-        width: 150px;
     }
 
     &__controls {
         display: flex;
-        gap: 10px;
+        gap: 50px;
 
         .btn {
             cursor: pointer;
             transition: all 0.3s;
+            width: 30px;
+            height: 30px;
 
             &:hover {
-                transform: scale(1.2);
+                transform: scale(1.1);
             }
 
             &:active {

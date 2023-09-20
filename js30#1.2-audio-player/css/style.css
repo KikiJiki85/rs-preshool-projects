@@ -394,7 +394,7 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 .music-app__header {
   margin: 0;
@@ -409,6 +409,9 @@ img {
   border-radius: 10px;
   object-fit: cover;
 }
+.music-app__current-song {
+  font-size: 18px;
+}
 .music-app__progress-container {
   background-color: #e4e9ed;
   border-radius: 5px;
@@ -422,18 +425,19 @@ img {
   background-color: #2b3c5b;
   border-radius: 3px;
   height: 6px;
-  width: 150px;
 }
 .music-app__controls {
   display: flex;
-  gap: 10px;
+  gap: 50px;
 }
 .music-app__controls .btn {
   cursor: pointer;
   transition: all 0.3s;
+  width: 30px;
+  height: 30px;
 }
 .music-app__controls .btn:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 .music-app__controls .btn:active {
   transform: scale(0.9);
