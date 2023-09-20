@@ -25,9 +25,11 @@
     &__cover {
         display: flex;
         justify-content: center;
+        height: 400px;
 
         img {
             border-radius: 10px;
+            object-fit: cover;
         }
     }
 

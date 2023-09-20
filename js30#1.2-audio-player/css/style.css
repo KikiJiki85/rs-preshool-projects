@@ -403,9 +403,11 @@ img {
 .music-app__cover {
   display: flex;
   justify-content: center;
+  height: 400px;
 }
 .music-app__cover img {
   border-radius: 10px;
+  object-fit: cover;
 }
 .music-app__progress-container {
   background-color: #e4e9ed;
