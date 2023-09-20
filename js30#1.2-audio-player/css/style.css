@@ -407,7 +407,7 @@ img {
 .music-app__cover img {
   border-radius: 10px;
 }
-.music-app__progress__container {
+.music-app__progress-container {
   background-color: #e4e9ed;
   border-radius: 5px;
   width: 100%;
