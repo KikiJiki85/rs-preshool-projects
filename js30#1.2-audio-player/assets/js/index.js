@@ -55,16 +55,25 @@ function playNext() {
     playSong();
 }
 
-function updateProgress(e) {
-    const {duration, currentTime} = e.srcElement;
+function updateProgress(evt) {
+    const {duration, currentTime} = evt.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+}
+
+function rewind(evt) {
+    const barWidth = this.clientWidth;
+    const coordinateX = evt.offsetX;
+    const duration = track.duration;
+    track.currentTime = (coordinateX / barWidth) * duration;
 }
 
 playBtn.addEventListener('click', playSong);
 prevBtn.addEventListener('click', playPrev);
 nextBtn.addEventListener('click', playNext);
 track.addEventListener('timeupdate', updateProgress);
+track.addEventListener('ended', playNext)
+progressContainer.addEventListener('click', rewind);
 
 loadSong(songs[songIndex]);
 
