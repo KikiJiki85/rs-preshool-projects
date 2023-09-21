@@ -9,6 +9,7 @@ const currentSong = player.querySelector('.music-app__current-song');
 const coverImg = player.querySelector('.music-app__cover-img');
 const imgStatus = player.querySelector('.music-app__status');
 const songLength = player.querySelector('.music-app__time-total');
+const songCurrentTime = player.querySelector('.music-app__time-current');
 
 const songs = [`Beyonce - Don't Hurt Yourself`,`Dua Lipa - Don't Start Now`,`Slipknot - Vermilion, Pt.2`];
 
@@ -62,7 +63,7 @@ function rewind(evt) {
     track.currentTime = (evt.offsetX / this.clientWidth) * track.duration;
 }
 
-function num2time(num){
+function num2time(num) {
     let sec = parseInt(num);
     let min = parseInt(sec / 60);
     sec -= min * 60; 
@@ -71,12 +72,17 @@ function num2time(num){
 
     if(h === 0) return `${min}:${String(sec % 60).padStart(2,0)}`;
     return `${String(h).padStart(2,0)}:${min}:${String(sec % 60).padStart(2,0)}`;
-  }
+}
+
+function updateCurrentSongTime() {
+    songCurrentTime.textContent = num2time(track.currentTime);
+}
 
 playBtn.addEventListener('click', playSong);
 prevBtn.addEventListener('click', playPrev);
 nextBtn.addEventListener('click', playNext);
 track.addEventListener('timeupdate', updateProgressBar);
+track.addEventListener('timeupdate', updateCurrentSongTime);
 track.addEventListener('ended', playNext)
 track.addEventListener('loadeddata', () => {
     songLength.textContent = num2time(track.duration);
