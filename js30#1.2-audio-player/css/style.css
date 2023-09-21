@@ -316,7 +316,8 @@ template {
 .container {
   height: 100vh;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr min-content;
   justify-content: center;
   align-items: center;
   background-color: lightgray;
@@ -427,7 +428,7 @@ img {
   cursor: pointer;
 }
 .music-app__progress {
-  background-color: rgba(15, 32, 46, 0.847);
+  background-color: rgba(15, 32, 46, 0.85);
   height: 8px;
   transition: all 0.2s;
 }
@@ -446,5 +447,27 @@ img {
 }
 .music-app__controls .btn:active {
   transform: scale(0.9);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.footer__logo {
+  display: flex;
+  width: 80px;
+  height: auto;
+}
+.footer__github-link {
+  color: rgba(15, 32, 46, 0.85);
+  transition: all 0.5s;
+  display: flex;
+}
+.footer__github-link:hover {
+  transform: scale(1.1);
+}
+.footer__copyright-text {
+  cursor: default;
 }
 /*# sourceMappingURL=style.css.map */

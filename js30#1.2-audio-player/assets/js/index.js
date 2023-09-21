@@ -55,8 +55,9 @@ function playNext() {
     playSong();
 }
 
-function updateProgressBar() {
+function updateProgressBarAndSongCurrentTime() {
     progress.style.width = `${(track.currentTime / track.duration) * 100}%`;
+    songCurrentTime.textContent = num2time(track.currentTime);
 }
 
 function rewind(evt) {
@@ -74,15 +75,10 @@ function num2time(num) {
     return `${String(h).padStart(2,0)}:${min}:${String(sec % 60).padStart(2,0)}`;
 }
 
-function updateCurrentSongTime() {
-    songCurrentTime.textContent = num2time(track.currentTime);
-}
-
 playBtn.addEventListener('click', playSong);
 prevBtn.addEventListener('click', playPrev);
 nextBtn.addEventListener('click', playNext);
-track.addEventListener('timeupdate', updateProgressBar);
-track.addEventListener('timeupdate', updateCurrentSongTime);
+track.addEventListener('timeupdate', updateProgressBarAndSongCurrentTime);
 track.addEventListener('ended', playNext)
 track.addEventListener('loadeddata', () => {
     songLength.textContent = num2time(track.duration);
