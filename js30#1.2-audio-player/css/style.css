@@ -412,19 +412,23 @@ img {
 .music-app__current-song {
   font-size: 18px;
 }
+.music-app__time-container {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  margin-bottom: -18px;
+}
 .music-app__progress-container {
   background-color: #e4e9ed;
-  border-radius: 5px;
   width: 100%;
-  height: 6px;
+  height: 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 .music-app__progress {
   background-color: rgba(15, 32, 46, 0.847);
-  border-radius: 3px;
-  height: 6px;
+  height: 8px;
   transition: all 0.2s;
 }
 .music-app__controls {

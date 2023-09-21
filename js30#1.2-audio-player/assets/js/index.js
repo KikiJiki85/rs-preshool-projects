@@ -8,6 +8,7 @@ const progress = player.querySelector('.music-app__progress');
 const currentSong = player.querySelector('.music-app__current-song');
 const coverImg = player.querySelector('.music-app__cover-img');
 const imgStatus = player.querySelector('.music-app__status');
+const songLength = player.querySelector('.music-app__time-total');
 
 const songs = [`Beyonce - Don't Hurt Yourself`,`Dua Lipa - Don't Start Now`,`Slipknot - Vermilion, Pt.2`];
 
@@ -25,6 +26,7 @@ function updateSong() {
     if(songIndex < 0) songIndex = songs.length - 1;
     else if (songIndex > songs.length - 1) songIndex = 0;
     loadSong(songs[songIndex]);
+    isChanging = true;
 }
 
 function playSong() {
@@ -43,36 +45,42 @@ function playSong() {
 function playPrev() {
     songIndex--;
     updateSong();
-    isChanging = true;
     playSong();
-
 }
 
 function playNext() {
     songIndex++;
     updateSong();
-    isChanging = true;
     playSong();
 }
 
-function updateProgress(evt) {
-    const {duration, currentTime} = evt.srcElement;
-    const progressPercent = (currentTime / duration) * 100;
-    progress.style.width = `${progressPercent}%`;
+function updateProgressBar() {
+    progress.style.width = `${(track.currentTime / track.duration) * 100}%`;
 }
 
 function rewind(evt) {
-    const barWidth = this.clientWidth;
-    const coordinateX = evt.offsetX;
-    const duration = track.duration;
-    track.currentTime = (coordinateX / barWidth) * duration;
+    track.currentTime = (evt.offsetX / this.clientWidth) * track.duration;
 }
+
+function num2time(num){
+    let sec = parseInt(num);
+    let min = parseInt(sec / 60);
+    sec -= min * 60; 
+    let h = parseInt(min / 60);
+    min -= h * 60;
+
+    if(h === 0) return `${min}:${String(sec % 60).padStart(2,0)}`;
+    return `${String(h).padStart(2,0)}:${min}:${String(sec % 60).padStart(2,0)}`;
+  }
 
 playBtn.addEventListener('click', playSong);
 prevBtn.addEventListener('click', playPrev);
 nextBtn.addEventListener('click', playNext);
-track.addEventListener('timeupdate', updateProgress);
+track.addEventListener('timeupdate', updateProgressBar);
 track.addEventListener('ended', playNext)
+track.addEventListener('loadeddata', () => {
+    songLength.textContent = num2time(track.duration);
+});
 progressContainer.addEventListener('click', rewind);
 
 loadSong(songs[songIndex]);
