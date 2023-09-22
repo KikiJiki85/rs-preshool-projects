@@ -10,6 +10,9 @@ const coverImg = player.querySelector('.music-app__cover-img');
 const imgStatus = player.querySelector('.music-app__status');
 const songLength = player.querySelector('.music-app__time-total');
 const songCurrentTime = player.querySelector('.music-app__time-current');
+const volumeContainer = player.querySelector('.music-app__volume-slider');
+const volumePercentage = player.querySelector('.music-app__volume-percentage');
+
 
 const songs = [`Beyonce - Don't Hurt Yourself`,`Dua Lipa - Don't Start Now`,`Slipknot - Vermilion, Pt.2`];
 
@@ -55,13 +58,21 @@ function playNext() {
     playSong();
 }
 
-function updateProgressBarAndSongCurrentTime() {
+function updateBarAndTime() {
     progress.style.width = `${(track.currentTime / track.duration) * 100}%`;
     songCurrentTime.textContent = num2time(track.currentTime);
 }
 
+function updateVolume() {
+    volumePercentage.style.width = `${track.volume *100}%`;
+}
+
 function rewind(evt) {
     track.currentTime = (evt.offsetX / this.clientWidth) * track.duration;
+}
+
+function volume(evt) {
+    track.volume = evt.offsetX / this.clientWidth;
 }
 
 function num2time(num) {
@@ -78,12 +89,16 @@ function num2time(num) {
 playBtn.addEventListener('click', playSong);
 prevBtn.addEventListener('click', playPrev);
 nextBtn.addEventListener('click', playNext);
-track.addEventListener('timeupdate', updateProgressBarAndSongCurrentTime);
+track.addEventListener('timeupdate', updateBarAndTime);
+track.addEventListener('volumechange', updateVolume);
 track.addEventListener('ended', playNext)
 track.addEventListener('loadeddata', () => {
     songLength.textContent = num2time(track.duration);
+    track.volume = 0.5;
+    updateVolume();
 });
 progressContainer.addEventListener('click', rewind);
+volumeContainer.addEventListener('click', volume);
 
 loadSong(songs[songIndex]);
 

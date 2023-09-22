@@ -320,7 +320,7 @@ template {
   grid-template-rows: 1fr min-content;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  background: linear-gradient(to bottom left, #3AA6B9, #C1ECE4);
 }
 
 *,
@@ -384,11 +384,11 @@ img {
   max-width: 380px;
   width: 100%;
   padding: 25px;
-  background-color: gray;
+  background: linear-gradient(to bottom, #96B6C5, #ADC4CE);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 .music-app__content {
   display: flex;
@@ -397,9 +397,47 @@ img {
   justify-content: center;
   gap: 20px;
 }
-.music-app__header {
-  margin: 0;
-  font-size: 25px;
+.music-app__volume-container {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  align-self: flex-start;
+}
+.music-app__volume-container:hover .music-app__volume-slider {
+  width: 280px;
+}
+.music-app__volume-slider {
+  position: absolute;
+  top: 5px;
+  left: 40px;
+  z-index: -1;
+  width: 0;
+  height: 20px;
+  background-color: #e4e9ed;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+.music-app__volume-button {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+.music-app__volume-button img {
+  width: 30px;
+  height: 30px;
+  display: flex;
+}
+.music-app__volume-button:hover {
+  transform: scale(1.1);
+}
+.music-app__volume-percentage {
+  background-color: rgba(15, 32, 46, 0.85);
+  height: 100%;
+  transition: all 0.2s;
 }
 .music-app__cover {
   display: flex;
