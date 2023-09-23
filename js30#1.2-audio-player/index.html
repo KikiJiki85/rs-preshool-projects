@@ -9,10 +9,17 @@
 <body>
     <div class="container">
         <main class="music-app">
-            <h1 class="music-app__header">Music app</h1>
+            <div class="music-app__volume-container">
+                <div class="music-app__volume-button">
+                    <img class="music-app__volume-img" src="./assets/img/volume.png" alt="volume" width="30" height="30">
+                </div>
+                <div class="music-app__volume-slider">
+                    <div class="music-app__volume-percentage"></div>
+                </div>
+            </div>
             <div class="music-app__content">
                 <div class="music-app__cover">
-                    <img class="music-app__cover-img" src="" alt="cover image">
+                    <img class="music-app__cover-img" src="" alt="cover image" width="300">
                 </div>
                 <div class="music-app__current-song"></div>
                 <audio class="music-app__track" src=""></audio>
