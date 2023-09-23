@@ -14,7 +14,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        gap: 30px;
     }
 
     &__volume-container {
@@ -28,7 +28,7 @@
 
         &:hover {
             .music-app__volume-slider {
-                width: 280px;
+                width: 255px;
             }
         }
     }
@@ -71,7 +71,7 @@
     &__cover {
         display: flex;
         justify-content: center;
-        height: 400px;
+        height: 300px;
 
         img {
             border-radius: 10px;

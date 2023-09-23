@@ -14,7 +14,7 @@ const volumeContainer = player.querySelector('.music-app__volume-slider');
 const volumePercentage = player.querySelector('.music-app__volume-percentage');
 
 
-const songs = [`Beyonce - Don't Hurt Yourself`,`Dua Lipa - Don't Start Now`,`Slipknot - Vermilion, Pt.2`];
+const songs = [`Hollywood Undead - Rain`,`Pop Evil - Survivor`,`Slipknot - Vermilion, Pt.2`];
 
 let songIndex = 0;
 let isPlaying = false;
