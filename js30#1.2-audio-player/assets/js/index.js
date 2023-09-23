@@ -12,6 +12,8 @@ const songLength = player.querySelector('.music-app__time-total');
 const songCurrentTime = player.querySelector('.music-app__time-current');
 const volumeContainer = player.querySelector('.music-app__volume-slider');
 const volumePercentage = player.querySelector('.music-app__volume-percentage');
+const volumeButton = player.querySelector('.music-app__volume-button');
+const volumeImg = player.querySelector('.music-app__volume-img');
 
 
 const songs = [`Hollywood Undead - Rain`,`Pop Evil - Survivor`,`Slipknot - Vermilion, Pt.2`];
@@ -19,6 +21,8 @@ const songs = [`Hollywood Undead - Rain`,`Pop Evil - Survivor`,`Slipknot - Vermi
 let songIndex = 0;
 let isPlaying = false;
 let isChanging = false;
+let soundOn = true;
+let _soundLevel;
 
 function loadSong(song) {
     currentSong.textContent = song;
@@ -99,6 +103,18 @@ track.addEventListener('loadeddata', () => {
 });
 progressContainer.addEventListener('click', rewind);
 volumeContainer.addEventListener('click', volume);
+volumeButton.addEventListener('click', () => {
+    if (soundOn) {
+        volumeImg.src = `./assets/img/mute.png`;
+        _soundLevel = track.volume;
+        track.volume = 0;
+        soundOn = false;
+    } else {
+        volumeImg.src = `./assets/img/volume.png`;
+        track.volume = _soundLevel;
+        soundOn = true;
+    }
+});
 
 loadSong(songs[songIndex]);
 
