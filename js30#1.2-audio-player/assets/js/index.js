@@ -38,11 +38,12 @@ function updateSong() {
 }
 
 function playSong() {
-    if (!isPlaying || isChanging) {
+    if (!isPlaying || isChanging) {;
+        soundOn ? track.volume = 0.5 : track.volume = 0;
         track.play();
         isPlaying = true;
         imgStatus.src = `./assets/img/pause.png`;
-        isChanging = false;
+        isChanging = false
     } else {
         track.pause();
         isPlaying = false;
@@ -98,7 +99,6 @@ track.addEventListener('volumechange', updateVolume);
 track.addEventListener('ended', playNext)
 track.addEventListener('loadeddata', () => {
     songLength.textContent = num2time(track.duration);
-    track.volume = 0.5;
     updateVolume();
 });
 progressContainer.addEventListener('click', rewind);
