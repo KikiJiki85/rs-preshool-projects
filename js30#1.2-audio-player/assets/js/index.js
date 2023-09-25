@@ -22,7 +22,7 @@ let songIndex = 0;
 let isPlaying = false;
 let isChanging = false;
 let soundOn = true;
-let _soundLevel;
+let _soundLevel = 0.5;
 
 function loadSong(song) {
     currentSong.textContent = song;
@@ -38,12 +38,12 @@ function updateSong() {
 }
 
 function playSong() {
-    if (!isPlaying || isChanging) {;
-        soundOn ? track.volume = 0.5 : track.volume = 0;
+    if (!isPlaying || isChanging) {
+        soundOn ? track.volume = _soundLevel : track.volume = 0;
         track.play();
         isPlaying = true;
         imgStatus.src = `./assets/img/pause.png`;
-        isChanging = false
+        isChanging = false;
     } else {
         track.pause();
         isPlaying = false;
@@ -78,6 +78,7 @@ function rewind(evt) {
 
 function volume(evt) {
     track.volume = evt.offsetX / this.clientWidth;
+    _soundLevel = track.volume;
 }
 
 function num2time(num) {
