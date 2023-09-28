@@ -373,7 +373,7 @@ input[type=radio].visually-hidden {
   line-height: 40px;
   font-weight: 400;
   color: #000000;
-  background-color: #ffffff;
+  background: linear-gradient(to bottom, #EAFDFC, #BFEAF5);
   min-height: 100%;
   display: grid;
   grid-template-rows: min-content 1fr min-content;
@@ -403,6 +403,30 @@ img {
   font-weight: 700;
   src: url("../assets/fonts/ubuntu-v20-cyrillic-ext_latin-ext-700.woff2") format("woff2");
 }
+.header {
+  padding: 25px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.header__form {
+  display: flex;
+  align-items: center;
+  width: 33%;
+}
+.header__label {
+  display: flex;
+  width: 45px;
+  height: 45px;
+}
+.header__search {
+  height: 100%;
+  padding: 10px 20px;
+  margin-left: 15px;
+  border: 1px solid gray;
+  border-radius: 12px;
+  flex-grow: 1;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
