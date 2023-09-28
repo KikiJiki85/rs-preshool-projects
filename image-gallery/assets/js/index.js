@@ -1,13 +1,10 @@
-const URL = `https://api.unsplash.com/photos/random?client_id=SouHY7Uul-OxoMl3LL3c0NkxUtjIrKwf3tsGk1JaiVo&count=30&query=''`;
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.header__form');
     const search = form.querySelector('.header__search');
     const imageGallery = document.querySelector('.image-gallery');
 
-    async function getImages() {
-        const res = await fetch(URL);
+    async function getImages(query = '') {
+        const res = await fetch(`https://api.unsplash.com/photos/random?client_id=McvrzyhY5VI1bgjT8uWsKZpIywG3VrfhN6mT_Z9YCP8&count=28&query=${query}`);
         return await res.json();
       }
 
@@ -29,11 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
               imageGallery.append(a);
             })
           })
-        } catch (error) {
-          console.error(error)
+        } catch (err) {
+          console.error(err);
         }
       }
       render(getImages());
+
+      form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        const searchWord = search.value;
+        if(searchWord.trim().length > 0) {
+            document.querySelectorAll('.image-gallery__link').forEach((el) => el.remove());
+            render(getImages(searchWord));
+        };
+      });
 });
 
 

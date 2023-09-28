@@ -36,7 +36,7 @@ input[type='radio'].visually-hidden {
     line-height: 40px;
     font-weight: 400;
     color: #000000;
-    background: linear-gradient(to bottom, $bg-main-color1, $bg-main-color2);
+    background: $bg-main-color2;
     min-height: 100%;
     display: grid;
     grid-template-rows: min-content 1fr min-content;
