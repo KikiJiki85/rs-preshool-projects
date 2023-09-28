@@ -1,4 +1,4 @@
-const URL = `https://api.unsplash.com/search/photos?query=spring&per_page=30&orientation=landscape&client_id=SouHY7Uul-OxoMl3LL3c0NkxUtjIrKwf3tsGk1JaiVo`;
+const URL = `https://api.unsplash.com/photos/random?client_id=SouHY7Uul-OxoMl3LL3c0NkxUtjIrKwf3tsGk1JaiVo&count=30&query=''`;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,7 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function getImages() {
         const res = await fetch(URL);
-        const data = await res.json();
-        console.log(data.results);
+        return await res.json();
       }
+
+      function render(data) {
+        try {
+          data.then(el => {
+            el.forEach(({ urls, links }) => {
+              const img = document.createElement('img');
+              const a = document.createElement('a');
+    
+              a.classList.add('image-gallery__link');
+              img.classList.add('image-gallery__img');
+    
+              a.href = links.download;
+              a.target = '_blank';
+              img.src = urls.small;
+    
+              a.append(img);
+              imageGallery.append(a);
+            })
+          })
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      render(getImages());
 });
+
+
