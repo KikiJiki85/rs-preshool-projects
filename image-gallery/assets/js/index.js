@@ -6,8 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageGallery = document.querySelector('.image-gallery');
 
     async function getImages(query = '') {
-        const res = await fetch(`${URL}${query}`);
-        return await res.json();
+        try {
+          const res = await fetch(`${URL}${query}`);
+          return await res.json();
+        } catch (err) {
+          console.error(err);
+        }
       }
 
       function render(data) {
@@ -15,29 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
           data.then(el => {
             el.forEach(({ urls, links }) => {
               const fragment = document.createDocumentFragment();
-              
               const a = fragment.appendChild(document.createElement('a'));
               const img = a.appendChild(document.createElement('img'));
+
               a.classList.add('image-gallery__link');
               img.classList.add('image-gallery__img');
               a.href = links.download;
               a.target = '_blank';
               img.src = urls.regular;
-              console.log(urls);
-              imageGallery.appendChild(fragment);
 
-              // const img = document.createElement('img');
-              // const a = document.createElement('a');
-    
-              // a.classList.add('image-gallery__link');
-              // img.classList.add('image-gallery__img');
-    
-              // a.href = links.download;
-              // a.target = '_blank';
-              // img.src = urls.small;
-    
-              // a.append(img);
-              // imageGallery.append(a);
+              imageGallery.appendChild(fragment);
             })
           })
         } catch (err) {
