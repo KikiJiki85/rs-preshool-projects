@@ -305,4 +305,81 @@ template {
 [hidden] {
   display: none;
 }
+
+.page {
+  height: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type=checkbox].visually-hidden,
+input[type=radio].visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  clip: rect 0 0 0 0;
+  overflow: clip;
+  opacity: 0;
+}
+
+.page__body {
+  max-width: 1550px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+  color: #000000;
+  background: white;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  align-content: start;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.footer__logo {
+  display: flex;
+  width: 80px;
+  height: auto;
+}
+.footer__github-link {
+  color: rgba(15, 32, 46, 0.85);
+  transition: all 0.5s;
+  display: flex;
+}
+.footer__github-link:hover {
+  transform: scale(1.1);
+}
+.footer__copyright-text {
+  cursor: default;
+}
 /*# sourceMappingURL=style.css.map */

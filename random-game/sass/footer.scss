@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+
+    &__logo {
+        display: flex;
+        width: 80px;
+        height: auto;
+    }
+
+    &__github-link {
+        color: rgba(15, 32, 46, 0.85);
+        transition: all 0.5s;
+        display: flex;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__copyright-text {
+        cursor: default;
+    }
+}
