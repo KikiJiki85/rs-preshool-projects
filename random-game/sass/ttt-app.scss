@@ -1,1 +1,23 @@
-.ttt-app {}
+.ttt-app {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: 50px repeat(3, 80px) 60px;
+    gap: 5px;
+
+    &__field {
+        background-color: #EAC7C7;
+    }
+
+    &__turn {
+        background-color: #D988B9;
+        grid-column: span 2;
+    }
+
+    &__actions {
+        background-color: #F7F5EB;
+    }
+
+    &__score {
+        background-color: #A0C3D2;
+    }
+}

@@ -40,8 +40,14 @@ input[type='radio'].visually-hidden {
     background: $bg-main-color;
     min-height: 100%;
     display: grid;
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-rows: 1fr min-content;
     align-content: start;
+}
+
+.page__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a {

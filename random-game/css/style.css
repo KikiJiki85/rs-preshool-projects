@@ -306,6 +306,20 @@ template {
   display: none;
 }
 
+@font-face {
+  font-display: swap;
+  font-family: "Stick No Bills";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/stick-no-bills-v15-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Stick No Bills";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/stick-no-bills-v15-latin-700.woff2") format("woff2");
+}
 .page {
   height: 100%;
   box-sizing: border-box;
@@ -340,16 +354,22 @@ input[type=radio].visually-hidden {
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: "Stick No Bills", Arial, sans-serif;
   font-size: 20px;
   line-height: 40px;
   font-weight: 400;
   color: #000000;
-  background: white;
+  background: #EAE0DA;
   min-height: 100%;
   display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: 1fr min-content;
   align-content: start;
+}
+
+.page__main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
@@ -359,6 +379,26 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+.ttt-app {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: 50px repeat(3, 80px) 60px;
+  gap: 5px;
+}
+.ttt-app__field {
+  background-color: #EAC7C7;
+}
+.ttt-app__turn {
+  background-color: #D988B9;
+  grid-column: span 2;
+}
+.ttt-app__actions {
+  background-color: #F7F5EB;
+}
+.ttt-app__score {
+  background-color: #A0C3D2;
 }
 
 .footer {
