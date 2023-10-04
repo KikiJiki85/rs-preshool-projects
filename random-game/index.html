@@ -10,8 +10,20 @@
         <main class="page__main">
             <section class="ttt-app">
                 <h1 class="visually-hidden">Tic tac toe game</h1>
-                <div class="ttt-app__turn"></div>
-                <div class="ttt-app__actions"></div>
+
+                <div class="ttt-app__turn">
+                    <span class="ttt-app__turn-icon"></span>
+                    <p class="ttt-app__player-turn">Player 1, your turn</p>
+                </div>
+
+                <div class="ttt-app__menu">
+                    <button class="ttt-app__menu-btn">Actions <span class="ttt-app__menu-drop"></span></button>
+                    <div class="ttt-app__nemu-items">
+                        <button class="ttt-app__reset visually-hidden"></button>
+                        <button class="ttt-app__new-round visually-hidden"></button>
+                    </div>
+                </div>
+
                 <div class="ttt-app__field"></div>
                 <div class="ttt-app__field"></div>
                 <div class="ttt-app__field"></div>

@@ -11,13 +11,77 @@
     &__turn {
         background-color: #D988B9;
         grid-column: span 2;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        &-icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            animation: 0.6s ease-in-out turn-icon-animation;
+
+            &::before,
+            &::after {
+                position: absolute;
+                content: '';
+                width: 2px;
+                height: 17px;
+                top: 0;
+                right: 0;
+                background-color: $text-font-color;
+            }
+
+            &::before {
+                rotate: (45deg);
+            }
+
+            &::after {
+                rotate: (-45deg);
+            }
+        }
     }
 
-    &__actions {
+    &__player-turn {
+        font-size: 16px;
+        margin: 0;
+        line-height: normal;
+        animation: 0.6s ease-in-out turn-text-animation;
+    }
+
+    &__menu {
         background-color: #F7F5EB;
+        position: relative;
+
+        &-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        &-drop {
+            background-image: url('../assets/img/icon.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 16px;
+            height: 16px;
+        }
     }
 
     &__score {
         background-color: #A0C3D2;
+    }
+}
+
+@media (min-width: 768px) {
+    .ttt-app {
+        width: 490px;
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: 50px repeat(3, 150px) 60px;
+        gap: 20px;
     }
 }
