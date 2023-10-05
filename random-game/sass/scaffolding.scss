@@ -25,16 +25,14 @@ input[type='radio'].visually-hidden {
     clip: rect (0 0 0 0);
     overflow: clip;
     opacity: 0;
+    visibility: hidden;
 }
 
 .page__body {
-    max-width: 1550px;
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
     font-family: $main-font, Arial, sans-serif;
     font-size: 20px;
-    line-height: 40px;
+    line-height: normal;
     font-weight: 400;
     color: #000000;
     background: $bg-main-color;
@@ -48,6 +46,11 @@ input[type='radio'].visually-hidden {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-show {
+    opacity: 1;
+    visibility: visible;
 }
 
 a {
