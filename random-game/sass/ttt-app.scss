@@ -81,7 +81,7 @@
             height: 100%;
             border: none;
             cursor: pointer;
-            background-color: #F7F5EB;
+            background-color: $menu-bcg-color;
         }
 
         &-drop {
@@ -93,7 +93,7 @@
         }
 
         &-items {
-            background-color: #F7F5EB;
+            background-color: $menu-bcg-color;
             position: absolute;
             z-index: 10;
             top: 60px;
@@ -140,6 +140,10 @@
         &--player1 {
             background-color: $x-color;
             color: $text-font-color2;
+        }
+
+        &--ties {
+            background-color: $menu-bcg-color;
         }
 
         &--player2 {

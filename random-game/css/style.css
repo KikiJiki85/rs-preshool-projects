@@ -462,6 +462,9 @@ template {
   background-color: #9A1663;
   color: #E8D2A6;
 }
+.ttt-app__score--ties {
+  background-color: #F7F5EB;
+}
 .ttt-app__score--player2 {
   background-color: #B04759;
   color: #E8D2A6;
