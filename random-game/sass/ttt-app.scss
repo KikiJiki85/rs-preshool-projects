@@ -5,37 +5,60 @@
     gap: 5px;
 
     &__turn {
-        // background-color: #D988B9;
         grid-column: span 2;
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
+    }
 
-        &-icon {
-            position: relative;
-            width: 16px;
-            height: 16px;
+    &__x-icon {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        transition: all 0.5s;
+
+        &::before,
+        &::after {
+            position: absolute;
+            content: '';
+            width: 4px;
+            height: 2rem;
+            top: 0;
+            left: 50%;
+            background-color: $x-color;
+        }
+
+        &::before {
+            rotate: (45deg);
+        }
+
+        &::after {
+            rotate: (-45deg);
+        }
+
+        &--small {
+            width: 1rem;
+            height: 1rem;
             animation: 0.6s ease-in-out turn-icon-animation;
 
             &::before,
             &::after {
-                position: absolute;
-                content: '';
                 width: 2px;
-                height: 17px;
+                height: 1rem;
                 top: 0;
                 right: 0;
-                background-color: $text-font-color;
-            }
-
-            &::before {
-                rotate: (45deg);
-            }
-
-            &::after {
-                rotate: (-45deg);
             }
         }
+
+    }
+
+    &__o-icon {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        transition: all 0.5s;
+        border-radius: 50%;
+        border: 5px solid $o-color;
     }
 
     &__player-turn {
@@ -96,7 +119,6 @@
     }
 
     &__score {
-        background-color: #A0C3D2;
         @include shadow;
 
         display: flex;
@@ -113,6 +135,16 @@
 
         &-num {
             font-size: 14px;
+        }
+
+        &--player1 {
+            background-color: $x-color;
+            color: $text-font-color2;
+        }
+
+        &--player2 {
+            background-color: $o-color;
+            color: $text-font-color2;
         }
     }
 
@@ -185,5 +217,33 @@
         grid-template-columns: repeat(3, 150px);
         grid-template-rows: 50px repeat(3, 150px) 60px;
         gap: 20px;
+
+        &__x-icon {
+            width: 5rem;
+            height: 4rem;
+
+            &::before,
+            &::after {
+                width: 6px;
+                height: 4rem;
+            }
+
+            &--small {
+                width: 1.5rem;
+                height: 1.5rem;
+
+                &::before,
+                &::after {
+                    width: 3px;
+                    height: 1.5rem;
+                }
+            }
+        }
+
+        &__o-icon {
+            width: 4rem;
+            height: 4rem;
+            border-width: 7px;
+        }
     }
 }
