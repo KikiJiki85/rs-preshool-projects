@@ -3,6 +3,9 @@ const menuItems = menu.querySelector('[data-id="menu__items"]');
 const resetBtn = menu.querySelector('[data-id="menu__reset"]');
 const newRoundBtn = menu.querySelector('[data-id="menu__new-round"]');
 const fields = document.querySelectorAll('[data-id="field"]');
+const modal = document.querySelector('[data-id="modal"]');
+const modalWinner = modal.querySelector('[data-id="modal-winner"]');
+const modalPlayAgain = modal.querySelector('[data-id="modal-playagain"]');
 
 const state = {
     moves: []
@@ -52,6 +55,12 @@ function registerEventListeners() {
     newRoundBtn.addEventListener('click', () => {
         console.log('New round');
     });
+
+    modalPlayAgain.addEventListener('click', () => {
+        state.moves = [];
+        fields.forEach(field => field.replaceChildren());
+        modal.classList.toggle('modal-show');
+    });
     
     fields.forEach((field) => 
         field.addEventListener('click', (evt) => {
@@ -86,11 +95,17 @@ function registerEventListeners() {
             const game = getGameStatus(state.moves);
 
             if (game.status === 'finish') {
+                modal.classList.toggle('modal-show');
+
+                let message = '';
+
                 if (game.winner) {
-                    alert(`Player ${game.winner} wins!`)
+                    message = `Player ${game.winner} wins!`;
                 } else {
-                    alert('Its a tie');
+                    message = `It's a tie game!`;
                 }
+
+                modalWinner.textContent = message;
             }
 
     }));
