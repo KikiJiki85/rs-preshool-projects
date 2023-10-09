@@ -43,6 +43,12 @@ export class View {
         this.menuIcon.classList.toggle('rotate-element');
     };
 
+    _closeMenu() {
+        this.menuItems.classList.remove('modal-show');
+        this.menuBtn.classList.remove('outline-element');
+        this.menuIcon.classList.remove('rotate-element');
+    }
+
     _closeModal() {
         this.modal.classList.remove('modal-show');
     }
@@ -71,7 +77,7 @@ export class View {
     
     closeAll() {
         this._closeModal();
-        this._toggleMenu();
+        this._closeMenu();
     }
 
     clearFields() {

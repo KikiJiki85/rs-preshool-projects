@@ -1,4 +1,10 @@
-const startingValue = {moves: []};
+const startingValue = {
+    moves: [],
+    history: {
+        currentRoundGames: [],
+        allGames: []
+    }
+};
 
 export class Model {
 
@@ -45,10 +51,24 @@ export class Model {
         }
     }
 
-    gamerMove(fieldId) {
+    get stats() {
         const state = this._getState();
 
-        const stateClone = structuredClone(state);
+        return {
+            playerWithStats: this.gamers.map(gamer => {
+                const wins = state.history.currentRoundGames.filter(game => game.status.winner?.id === gamer.id).length;
+                return {
+                    ...gamer,
+                    wins
+                };
+            }),
+            ties: state.history.currentRoundGames.filter(game => game.status.winner === null).length
+        }
+    }
+
+    gamerMove(fieldId) {
+
+        const stateClone = structuredClone(this._getState());
 
         stateClone.moves.push({
             fieldId,
@@ -58,8 +78,15 @@ export class Model {
     }
 
     resetGame() {
-        this._setState(startingValue);
+        const stateClone = structuredClone(this._getState());
 
+        const {status, moves} = this.game;
+        if (status.isFinished) {
+            stateClone.history.currentRoundGames.push({moves,status});
+        }
+
+        stateClone.moves = [];
+        this._setState(stateClone);
     }
 
     _getState() {
