@@ -4,6 +4,7 @@ export class View {
 
         this.menu = document.querySelector('[data-id="menu"]');
         this.menuBtn = document.querySelector('[data-id="menu-btn"]');
+        this.menuIcon = document.querySelector('[data-id="menu-icon"]');
         this.menuItems = document.querySelector('[data-id="menu__items"]');
         this.resetBtn = document.querySelector('[data-id="menu__reset"]');
         this.newRoundBtn = document.querySelector('[data-id="menu__new-round"]');
@@ -15,7 +16,7 @@ export class View {
         this.turnPlayer = document.querySelector('[data-id="turn-player"]');
 
         this.menuBtn.addEventListener("click", () => {
-            this.toggleMenu();
+            this._toggleMenu();
         });
         
     }
@@ -34,8 +35,32 @@ export class View {
         });
     }
 
-    toggleMenu() {
+    _toggleMenu() {
         this.menuItems.classList.toggle('modal-show');
-        this.menuBtn.classList.toggle('outline');
+        this.menuBtn.classList.toggle('outline-element');
+        this.menuIcon.classList.toggle('rotate-element');
     };
+
+    setCurrentTurn(p = 2) {
+        this.turnPlayer.textContent = `Player ${p}, your turn`;
+
+        if (p === 1) {
+            this.turnIcon.classList.remove('ttt-app__o-icon','ttt-app__o-icon--small');
+            setTimeout(() => {
+                this.turnIcon.classList.add('ttt-app__x-icon','ttt-app__x-icon--small');
+            }); 
+           
+        } else {
+            this.turnIcon.classList.remove('ttt-app__x-icon','ttt-app__x-icon--small');
+            setTimeout(() => {
+                this.turnIcon.classList.add('ttt-app__o-icon','ttt-app__o-icon--small');
+            })
+        }
+    }
+
+    setCurrentMove(field, p = 2) {
+        const icon = document.createElement('span');
+        icon.classList.add(p === 1 ? 'ttt-app__x-icon' : 'ttt-app__o-icon');
+        field.replaceChildren(icon);
+    }
 }

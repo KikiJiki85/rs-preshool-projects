@@ -622,8 +622,12 @@ input[type=radio].visually-hidden {
   visibility: visible;
 }
 
-.outline {
+.outline-element {
   outline: 1px solid #2D3440;
+}
+
+.rotate-element {
+  transform: rotate(180deg);
 }
 
 a {

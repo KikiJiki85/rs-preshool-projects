@@ -53,8 +53,12 @@ input[type='radio'].visually-hidden {
     visibility: visible;
 }
 
-.outline {
+.outline-element {
     outline: 1px solid $text-font-color;
+}
+
+.rotate-element {
+    transform: rotate(180deg);
 }
 
 a {

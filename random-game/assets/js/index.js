@@ -139,7 +139,9 @@ function init() {
     });
 
     view.setPlayerMoveEvent(evt => {
-        console.log(evt);
+        view.setCurrentTurn(2);
+        view.setCurrentMove(evt.target,1);
+        console.log(evt)
     });
 }
 
