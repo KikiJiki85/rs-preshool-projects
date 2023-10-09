@@ -389,9 +389,14 @@ template {
   position: relative;
   width: 2rem;
   height: 2rem;
-  transition: all 0.5s;
   border-radius: 50%;
   border: 5px solid #B04759;
+}
+.ttt-app__o-icon--small {
+  width: 1rem;
+  height: 1rem;
+  border-width: 3px;
+  animation: 0.6s ease-in-out turn-icon-animation;
 }
 .ttt-app__player-turn {
   font-size: 18px;
@@ -413,6 +418,8 @@ template {
   border: none;
   cursor: pointer;
   background-color: #F7F5EB;
+  outline: 1px solid transparent;
+  transition: outline 0.5s;
 }
 .ttt-app__menu-drop {
   background-image: url("../assets/img/icon.png");
@@ -554,6 +561,11 @@ template {
     height: 4rem;
     border-width: 7px;
   }
+  .ttt-app__o-icon--small {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-width: 4px;
+  }
 }
 .page {
   height: 100%;
@@ -608,6 +620,10 @@ input[type=radio].visually-hidden {
 .modal-show {
   opacity: 1;
   visibility: visible;
+}
+
+.outline {
+  outline: 1px solid #2D3440;
 }
 
 a {

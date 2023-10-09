@@ -53,6 +53,10 @@ input[type='radio'].visually-hidden {
     visibility: visible;
 }
 
+.outline {
+    outline: 1px solid $text-font-color;
+}
+
 a {
     text-decoration: none;
 }

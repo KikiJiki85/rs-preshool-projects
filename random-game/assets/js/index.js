@@ -1,3 +1,5 @@
+import { View } from "./view.js";
+
 const menu = document.querySelector('[data-id="menu"]');
 const menuItems = menu.querySelector('[data-id="menu__items"]');
 const resetBtn = menu.querySelector('[data-id="menu__reset"]');
@@ -6,6 +8,8 @@ const fields = document.querySelectorAll('[data-id="field"]');
 const modal = document.querySelector('[data-id="modal"]');
 const modalWinner = modal.querySelector('[data-id="modal-winner"]');
 const modalPlayAgain = modal.querySelector('[data-id="modal-playagain"]');
+const turnIcon = document.querySelector('[data-id="turn-icon"]');
+const turnPlayer = document.querySelector('[data-id="turn-player"]');
 
 const state = {
     moves: []
@@ -81,8 +85,19 @@ function registerEventListeners() {
 
             if (currentPlayer === 1) {
                 icon.classList.add('ttt-app__x-icon');
+                turnIcon.classList.remove('ttt-app__o-icon','ttt-app__o-icon--small');
+                setTimeout(() => {
+                    turnIcon.classList.add('ttt-app__x-icon','ttt-app__x-icon--small');
+                }); 
+                turnPlayer.textContent = `Player ${currentPlayer}, your turn`;
+                
             } else {
                 icon.classList.add('ttt-app__o-icon');
+                turnIcon.classList.remove('ttt-app__x-icon','ttt-app__x-icon--small');
+                setTimeout(() => {
+                    turnIcon.classList.add('ttt-app__o-icon','ttt-app__o-icon--small');
+                })
+                turnPlayer.textContent = `Player ${currentPlayer}, your turn`;
             }
 
             state.moves.push({
@@ -111,4 +126,21 @@ function registerEventListeners() {
     }));
 }
 
-document.addEventListener('DOMContentLoaded', registerEventListeners);
+
+function init() {
+    const view = new View(); 
+
+    view.setGameResetEvent(evt => {
+        console.log(evt);
+    });
+
+    view.setNewRoundEvent(evt => {
+        console.log(evt);
+    });
+
+    view.setPlayerMoveEvent(evt => {
+        console.log(evt);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', init);
