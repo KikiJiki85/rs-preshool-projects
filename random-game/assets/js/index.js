@@ -150,8 +150,8 @@ function init() {
         model.resetGame();
         view.clearFields();
         view.setCurrentTurn(model.game.currentGamer);
-
-        console.log(model.stats);
+        console.log(model.stats)
+        view.updateResults(model.stats.playerWithStats[0].wins,model.stats.playerWithStats[1].wins,model.stats.ties);
     });
 
     view.setNewRoundEvent(evt => {

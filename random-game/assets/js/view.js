@@ -15,6 +15,10 @@ export class View {
         this.turn = document.querySelector('[data-id="turn"]');
         this.turnIcon = document.querySelector('[data-id="turn-icon"]');
         this.turnPlayer = document.querySelector('[data-id="turn-player"]');
+        this.gamer1Wins = document.querySelector('[data-id="player1-wins"]');
+        this.gamer2Wins = document.querySelector('[data-id="player2-wins"]');
+        this.gameTiesCount = document.querySelector('[data-id="ties"]');
+
 
         this.menuBtn.addEventListener("click", () => {
             this._toggleMenu();
@@ -82,5 +86,11 @@ export class View {
 
     clearFields() {
         this.fields.forEach(field => field.replaceChildren());
+    }
+
+    updateResults(g1Wins, g2Wins, ties) {
+        this.gamer1Wins.textContent = `${g1Wins} Wins`;
+        this.gamer2Wins.textContent = `${g2Wins} Wins`;
+        this.gameTiesCount.textContent = `${ties}`;
     }
 }
