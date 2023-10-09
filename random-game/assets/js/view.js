@@ -12,6 +12,7 @@ export class View {
         this.modal = document.querySelector('[data-id="modal"]');
         this.modalWinner = document.querySelector('[data-id="modal-winner"]');
         this.modalPlayAgain = document.querySelector('[data-id="modal-playagain"]');
+        this.turn = document.querySelector('[data-id="turn"]');
         this.turnIcon = document.querySelector('[data-id="turn-icon"]');
         this.turnPlayer = document.querySelector('[data-id="turn-player"]');
 
@@ -41,24 +42,18 @@ export class View {
         this.menuIcon.classList.toggle('rotate-element');
     };
 
-    setCurrentTurn(p = 2) {
-        this.turnPlayer.textContent = `Player ${p}, your turn`;
+    setCurrentTurn(gamer) {
+        const fragment = document.createDocumentFragment();
+        const span = fragment.appendChild(document.createElement('span'));
+        const p = fragment.appendChild(document.createElement('p'));
+        span.classList.add(gamer.classes[0], gamer.classes[1]);
+        p.classList.add('ttt-app__player-turn');
+        p.textContent = `${gamer.name}, your turn`;
 
-        if (p === 1) {
-            this.turnIcon.classList.remove('ttt-app__o-icon','ttt-app__o-icon--small');
-            setTimeout(() => {
-                this.turnIcon.classList.add('ttt-app__x-icon','ttt-app__x-icon--small');
-            }); 
-           
-        } else {
-            this.turnIcon.classList.remove('ttt-app__x-icon','ttt-app__x-icon--small');
-            setTimeout(() => {
-                this.turnIcon.classList.add('ttt-app__o-icon','ttt-app__o-icon--small');
-            })
-        }
+        this.turn.replaceChildren(fragment);
     }
 
-    setCurrentMove(field, p = 2) {
+    setCurrentMove(field, p) {
         const icon = document.createElement('span');
         icon.classList.add(p === 1 ? 'ttt-app__x-icon' : 'ttt-app__o-icon');
         field.replaceChildren(icon);
