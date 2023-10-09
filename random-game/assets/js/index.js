@@ -1,4 +1,5 @@
 import { View } from "./view.js";
+import { Model } from "./model.js";
 
 const menu = document.querySelector('[data-id="menu"]');
 const menuItems = menu.querySelector('[data-id="menu__items"]');
@@ -129,6 +130,9 @@ function registerEventListeners() {
 
 function init() {
     const view = new View(); 
+    const model = new Model();
+
+    console.log(model.game);
 
     view.setGameResetEvent(evt => {
         console.log(evt);
@@ -141,7 +145,6 @@ function init() {
     view.setPlayerMoveEvent(evt => {
         view.setCurrentTurn(2);
         view.setCurrentMove(evt.target,1);
-        console.log(evt)
     });
 }
 
