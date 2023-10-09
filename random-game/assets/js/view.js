@@ -32,7 +32,7 @@ export class View {
 
     setPlayerMoveEvent(handler) {
         this.fields.forEach(field => {
-            field.addEventListener('click', handler);
+            field.addEventListener('click', () => handler(field));
         });
     }
 
@@ -53,9 +53,9 @@ export class View {
         this.turn.replaceChildren(fragment);
     }
 
-    setCurrentMove(field, p) {
+    setCurrentMove(field, gamer) {
         const icon = document.createElement('span');
-        icon.classList.add(p === 1 ? 'ttt-app__x-icon' : 'ttt-app__o-icon');
+        icon.classList.add(gamer.classes[0]);
         field.replaceChildren(icon);
     }
 }

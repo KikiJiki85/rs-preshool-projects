@@ -136,13 +136,13 @@ const PLAYERS =  [
     {
         id: 2,
         name: 'Player 2',
-        classes: ['ttt-app__o-icon','ttt-app__o-icon--small']
+        classes: ['ttt-app__o-icon','ttt-app__o-icon--small'],
     }
 ];
 
 function init() {
     const view = new View(); 
-    const model = new Model();
+    const model = new Model(PLAYERS);
 
     console.log(model.game);
 
@@ -154,9 +154,14 @@ function init() {
         console.log(evt);
     });
 
-    view.setPlayerMoveEvent(evt => {
-        view.setCurrentTurn(PLAYERS[1]);
-        view.setCurrentMove(evt.target,1);
+    view.setPlayerMoveEvent(field => {
+        const hasMove = model.game.moves.find(move => move.fieldId === Number(field.id));
+        if (hasMove) return;
+
+        view.setCurrentMove(field, model.game.currentGamer);
+        model.gamerMove(Number(field.id));
+        view.setCurrentTurn(model.game.currentGamer);
+        
     });
 }
 
