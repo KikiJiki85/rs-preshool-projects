@@ -43,6 +43,10 @@ export class View {
         this.menuIcon.classList.toggle('rotate-element');
     };
 
+    _closeModal() {
+        this.modal.classList.remove('modal-show');
+    }
+
     setCurrentTurn(gamer) {
         const fragment = document.createDocumentFragment();
         const span = fragment.appendChild(document.createElement('span'));
@@ -61,12 +65,13 @@ export class View {
     }
 
     openModal(msg) {
-        this.modal.classList.toggle('modal-show');
+        this.modal.classList.add('modal-show');
         this.modalWinner.textContent = msg;
     }
-
-    closeModal() {
-        this.modal.classList.toggle('modal-show');
+    
+    closeAll() {
+        this._closeModal();
+        this._toggleMenu();
     }
 
     clearFields() {

@@ -146,7 +146,7 @@ function init() {
 
 
     view.setGameResetEvent(evt => {
-        view.closeModal();
+        view.closeAll();
         model.resetGame();
         view.clearFields();
         view.setCurrentTurn(model.game.currentGamer);
