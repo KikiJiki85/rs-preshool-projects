@@ -24,6 +24,7 @@ export class View {
 
     setGameResetEvent(handler) {
         this.resetBtn.addEventListener('click', handler);
+        this.modalPlayAgain.addEventListener('click', handler);
     }
 
     setNewRoundEvent(handler) {
@@ -57,5 +58,18 @@ export class View {
         const icon = document.createElement('span');
         icon.classList.add(gamer.classes[0]);
         field.replaceChildren(icon);
+    }
+
+    openModal(msg) {
+        this.modal.classList.toggle('modal-show');
+        this.modalWinner.textContent = msg;
+    }
+
+    closeModal() {
+        this.modal.classList.toggle('modal-show');
+    }
+
+    clearFields() {
+        this.fields.forEach(field => field.replaceChildren());
     }
 }
