@@ -2,22 +2,22 @@ export class View {
 
     constructor() {
 
-        this.menu = document.querySelector('[data-id="menu"]');
-        this.menuBtn = document.querySelector('[data-id="menu-btn"]');
-        this.menuIcon = document.querySelector('[data-id="menu-icon"]');
-        this.menuItems = document.querySelector('[data-id="menu__items"]');
-        this.resetBtn = document.querySelector('[data-id="menu__reset"]');
-        this.newRoundBtn = document.querySelector('[data-id="menu__new-round"]');
-        this.fields = document.querySelectorAll('[data-id="field"]');
-        this.modal = document.querySelector('[data-id="modal"]');
-        this.modalWinner = document.querySelector('[data-id="modal-winner"]');
-        this.modalPlayAgain = document.querySelector('[data-id="modal-playagain"]');
-        this.turn = document.querySelector('[data-id="turn"]');
-        this.turnIcon = document.querySelector('[data-id="turn-icon"]');
-        this.turnPlayer = document.querySelector('[data-id="turn-player"]');
-        this.gamer1Wins = document.querySelector('[data-id="player1-wins"]');
-        this.gamer2Wins = document.querySelector('[data-id="player2-wins"]');
-        this.gameTiesCount = document.querySelector('[data-id="ties"]');
+        this.menu = document.querySelector('.ttt-app__menu');
+        this.menuBtn = document.querySelector('.ttt-app__menu-btn');
+        this.menuIcon = document.querySelector('.ttt-app__menu-drop');
+        this.menuItems = document.querySelector('.ttt-app__menu-items');
+        this.resetBtn = document.querySelector('.ttt-app__reset');
+        this.newRoundBtn = document.querySelector('.ttt-app__new-round');
+        this.fields = document.querySelectorAll('.ttt-app__field');
+        this.modal = document.querySelector('.ttt-app__modal');
+        this.modalWinner = document.querySelector('.ttt-app__modal-text');
+        this.modalPlayAgain = document.querySelector('.ttt-app__modal-btn');
+        this.turn = document.querySelector('.ttt-app__turn');
+        this.turnIcon = document.querySelector('.ttt-app__turn-icon');
+        this.turnPlayer = document.querySelector('.ttt-app__player-turn');
+        this.gamer1Wins = document.querySelector('.ttt-app__player1-wins');
+        this.gamer2Wins = document.querySelector('.ttt-app__player2-wins');
+        this.gameTiesCount = document.querySelector('.ttt-app__ties');
 
 
         this.menuBtn.addEventListener("click", () => {
