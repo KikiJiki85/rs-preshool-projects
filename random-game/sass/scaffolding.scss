@@ -1,0 +1,71 @@
+.page {
+    height: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type='checkbox'].visually-hidden,
+input[type='radio'].visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect (0 0 0 0);
+    overflow: clip;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.page__body {
+    margin: 0 auto;
+    font-family: $main-font, Arial, sans-serif;
+    font-size: 20px;
+    line-height: normal;
+    font-weight: 400;
+    color: #000000;
+    background: $bg-main-color;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    align-content: start;
+}
+
+.page__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.outline-element {
+    outline: 1px solid $text-font-color;
+}
+
+.rotate-element {
+    transform: rotate(180deg);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

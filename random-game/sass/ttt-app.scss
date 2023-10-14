@@ -1,0 +1,272 @@
+.ttt-app {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: 50px repeat(3, 80px) 60px;
+    gap: 5px;
+
+    &__turn {
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__x-icon {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        transition: all 0.5s;
+
+        &::before,
+        &::after {
+            position: absolute;
+            content: '';
+            width: 4px;
+            height: 2rem;
+            top: 0;
+            left: 50%;
+            background-color: $x-color;
+        }
+
+        &::before {
+            rotate: (45deg);
+        }
+
+        &::after {
+            rotate: (-45deg);
+        }
+
+        &--small {
+            width: 1rem;
+            height: 1rem;
+            animation: 0.6s ease-in-out turn-icon-animation;
+
+            &::before,
+            &::after {
+                width: 2px;
+                height: 1rem;
+                top: 0;
+                right: 0;
+            }
+        }
+
+    }
+
+    &__o-icon {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+
+        border-radius: 50%;
+        border: 5px solid $o-color;
+
+        &--small {
+            width: 1rem;
+            height: 1rem;
+            border-width: 3px;
+            animation: 0.6s ease-in-out turn-icon-animation;
+        }
+
+    }
+
+    &__player-turn {
+        font-size: 18px;
+        margin: 0;
+        line-height: normal;
+        animation: 0.6s ease-in-out turn-text-animation;
+    }
+
+    &__menu {
+        background-color: #F7F5EB;
+        position: relative;
+
+        &-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 19px;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: pointer;
+            background-color: $menu-bcg-color;
+            outline: 1px solid transparent;
+            transition: outline 0.5s;
+        }
+
+        &-drop {
+            background-image: url('../assets/img/icon.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 16px;
+            height: 16px;
+        }
+
+        &-items {
+            background-color: $menu-bcg-color;
+            position: absolute;
+            z-index: 10;
+            top: 60px;
+            right: 0;
+            padding: 10px;
+            border: 1px solid $text-font-color;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+    }
+
+    &__reset,
+    &__new-round {
+        background-color: transparent;
+        padding: 8px;
+        border: none;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    &__score {
+        @include shadow;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+
+        &-text {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        &-num {
+            font-size: 14px;
+        }
+
+        &--player1 {
+            background-color: $x-color;
+            color: $text-font-color2;
+        }
+
+        &--ties {
+            background-color: $menu-bcg-color;
+        }
+
+        &--player2 {
+            background-color: $o-color;
+            color: $text-font-color2;
+        }
+    }
+
+    &__field {
+        background-color: #EAC7C7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        @include shadow;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
+
+    &__modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.85);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s;
+
+        &-contents {
+            height: 150px;
+            width: 100%;
+            max-width: 300px;
+            background-color: #B0578D;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            margin: 10px;
+
+        }
+
+        &-text {
+            margin: 0;
+            color: white;
+        }
+
+        &-btn {
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.5s;
+            background-color: #F7F5EB;
+            border: none;
+            box-shadow: 0 6px 10px #000000;
+
+            &:hover {
+                transform: scale(1.08);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .ttt-app {
+        width: 490px;
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: 50px repeat(3, 150px) 60px;
+        gap: 20px;
+
+        &__x-icon {
+            width: 5rem;
+            height: 4rem;
+
+            &::before,
+            &::after {
+                width: 6px;
+                height: 4rem;
+            }
+
+            &--small {
+                width: 1.5rem;
+                height: 1.5rem;
+
+                &::before,
+                &::after {
+                    width: 3px;
+                    height: 1.5rem;
+                }
+            }
+        }
+
+        &__o-icon {
+            width: 4rem;
+            height: 4rem;
+            border-width: 7px;
+
+            &--small {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-width: 4px;
+            }
+        }
+    }
+}
