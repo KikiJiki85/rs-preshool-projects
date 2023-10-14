@@ -1,10 +1,21 @@
 const startingValue = {
     moves: [],
     history: {
-        currentRoundGames: [],
-        allGames: []
+        games: [],
+        actualGames: []
     }
 };
+
+const winningOptions = [
+    [1,2,3],
+    [1,5,9],
+    [1,4,7],
+    [2,5,8],
+    [3,5,7],
+    [3,6,9],
+    [4,5,6],
+    [7,8,9]
+];
 
 export class Model {
 
@@ -17,16 +28,7 @@ export class Model {
     get game() {
         const state = this._getState();
         const currentGamer = this.gamers[state.moves.length % 2];
-        const winningPatterns = [
-            [1,2,3],
-            [1,5,9],
-            [1,4,7],
-            [2,5,8],
-            [3,5,7],
-            [3,6,9],
-            [4,5,6],
-            [7,8,9]
-        ];
+
         let winner = null;
 
         for(let gamer of this.gamers) {
@@ -34,7 +36,7 @@ export class Model {
                 .filter(move => move.gamer.id === gamer.id)
                 .map(move => move.fieldId);
     
-            winningPatterns.forEach(pattern => {
+            winningOptions.forEach(pattern => {
                 if (pattern.every( value => selectedFieldIds.includes(value))) {
                     winner = gamer;
                 }
@@ -56,13 +58,13 @@ export class Model {
 
         return {
             playerWithStats: this.gamers.map(gamer => {
-                const wins = state.history.currentRoundGames.filter(game => game.status.winner?.id === gamer.id).length;
+                const wins = state.history.actualGames.filter(game => game.status.winner?.id === gamer.id).length;
                 return {
                     ...gamer,
                     wins
                 };
             }),
-            ties: state.history.currentRoundGames.filter(game => game.status.winner === null).length
+            ties: state.history.actualGames.filter(game => game.status.winner === null).length
         }
     }
 
@@ -82,10 +84,18 @@ export class Model {
 
         const {status, moves} = this.game;
         if (status.isFinished) {
-            stateClone.history.currentRoundGames.push({moves,status});
+            stateClone.history.actualGames.push({moves,status});
         }
 
         stateClone.moves = [];
+        this._setState(stateClone);
+    }
+
+    setNewRound() {
+        this.resetGame();
+        const stateClone = structuredClone(this._getState());
+        stateClone.history.games.push(...stateClone.history.actualGames);
+        stateClone.history.actualGames = [];
         this._setState(stateClone);
     }
 
@@ -95,6 +105,7 @@ export class Model {
     
     _setState(updateState) {
         const prevState = this._getState();
+        console.log(this._getState());
 
         let newState;
 

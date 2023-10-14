@@ -18,17 +18,21 @@ function init() {
     const view = new View(); 
     const model = new Model(GAMERS);
 
-
-    view.setGameResetEvent(evt => {
+    function fullReset() {
         view.closeAll();
         model.resetGame();
         view.clearFields();
         view.setCurrentTurn(model.game.currentGamer);
         view.updateResults(model.stats.playerWithStats[0].wins,model.stats.playerWithStats[1].wins,model.stats.ties);
+    }
+
+    view.setGameResetEvent(() => {
+        fullReset();
     });
 
     view.setNewRoundEvent(evt => {
-        console.log(evt);
+        model.setNewRound();
+        fullReset();
     });
 
     view.setPlayerMoveEvent(field => {
