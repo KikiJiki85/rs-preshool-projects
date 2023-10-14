@@ -16,23 +16,24 @@ const GAMERS =  [
 
 function init() {
     const view = new View(); 
-    const model = new Model(GAMERS);
+    const model = new Model('ttt-app-history', GAMERS);
 
-    function fullReset() {
+    function resetView() {
         view.closeAll();
-        model.resetGame();
         view.clearFields();
         view.setCurrentTurn(model.game.currentGamer);
         view.updateResults(model.stats.playerWithStats[0].wins,model.stats.playerWithStats[1].wins,model.stats.ties);
+        view.setMoves(model.game.moves);
     }
 
     view.setGameResetEvent(() => {
-        fullReset();
+        model.resetGame();
+        resetView();
     });
 
-    view.setNewRoundEvent(evt => {
+    view.setNewRoundEvent(() => {
         model.setNewRound();
-        fullReset();
+        resetView();
     });
 
     view.setPlayerMoveEvent(field => {
@@ -52,6 +53,7 @@ function init() {
 
         
     });
+    resetView();
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -19,9 +19,8 @@ const winningOptions = [
 
 export class Model {
 
-    _state = startingValue;
-
-    constructor(gamers) {
+    constructor(key,gamers) {
+        this.localStorageKey = key;
         this.gamers = gamers;
     }
 
@@ -100,25 +99,25 @@ export class Model {
     }
 
     _getState() {
-        return this._state;
+        const currentStorage = localStorage.getItem(this.localStorageKey);
+        return currentStorage ? JSON.parse(currentStorage) : startingValue;
     }
     
-    _setState(updateState) {
+    _setState(state) {
         const prevState = this._getState();
-        console.log(this._getState());
 
-        let newState;
+        let updatedState;
 
-        switch (typeof updateState) {
+        switch (typeof state) {
             case 'object':
-                newState = updateState;
+                updatedState = state;
                 break;
             case 'function':
-                newState = updateState(prevState);
+                updatedState = state(prevState);
                 break;
             default:
                 throw new Error('Wrong input passed to setState');
         }
-        this._state = newState;
+        localStorage.setItem(this.localStorageKey, JSON.stringify(updatedState));
     }
 }

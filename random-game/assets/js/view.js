@@ -74,6 +74,13 @@ export class View {
         field.replaceChildren(icon);
     }
 
+    setMoves(moves) {
+        this.fields.forEach((field) => {
+            const movesExist = moves.find(move => move.fieldId === Number(field.id));
+            if (movesExist) this.setCurrentMove(field, movesExist.gamer);
+        });
+    }
+
     openModal(msg) {
         this.modal.classList.add('modal-show');
         this.modalWinner.textContent = msg;
